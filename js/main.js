@@ -138,8 +138,9 @@ document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('touchmove', function (e) {
       if (isDragging && e.touches[0]) {
         updatePosition(e.touches[0].clientX);
+        e.preventDefault();
       }
-    });
+    }, { passive: false });
 
     document.addEventListener('touchend', function () {
       isDragging = false;

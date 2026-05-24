@@ -83,7 +83,7 @@ function renderProperties(list) {
     }).join('');
 
     return `
-      <div class="property-card cursor-pointer" onclick="window.location.href='properties.html'">
+      <div class="property-card w-full cursor-pointer" onclick="window.location.href='properties.html'">
         <div class="relative overflow-hidden" style="height:220px;">
           <div class="w-full h-full flex items-center justify-center text-sm font-medium" style="background:#D4C4B5; color:#6B5B4E;">${p.title}</div>
           ${availableBadge}

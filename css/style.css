@@ -22,12 +22,16 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
   background-color: var(--bg-main);
   color: var(--text-dark);
   font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 /* ============================
@@ -551,7 +555,19 @@ footer a:hover {
 @media (max-width: 640px) {
   .hero-title {
     font-size: 2.25rem;
+    line-height: 1.2;
   }
+  .section-title {
+    font-size: 1.75rem !important;
+  }
+}
+
+/* Before/After 滑桿手機支援 */
+.before-after-container {
+  touch-action: none;
+}
+.before-after-divider {
+  touch-action: none;
 }
 
 /* ============================
