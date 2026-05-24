@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>關於我們 ｜ JUSUO 居所</title>
+  <meta name="description" content="認識 JUSUO 居所，了解我們的品牌故事、創辦人 Sean 與服務理念。">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'bg-main':'#FAF8F5','bg-card':'#FFFFFF','bg-light':'#F0EBE3',
+            'text-dark':'#2D2620','text-mid':'#6B5B4E','brand-brown':'#8B6B4A',
+            'brand-green':'#7A9E7E','brand-gold':'#C9A96E','border-col':'#E8DDD4',
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-bg-main text-text-dark">
+
+  <!-- 導覽列 -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-bg-main/95 backdrop-blur-sm border-b border-border-col">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center justify-between h-16">
+        <a href="index.html" class="flex items-center gap-2">
+          <div class="w-9 h-9 rounded-xl flex items-center justify-center text-white text-sm font-bold" style="background:var(--brand-brown);">居</div>
+          <div><span class="font-bold text-lg" style="color:var(--text-dark);">JUSUO</span><span class="text-sm ml-1" style="color:var(--text-mid);">居所</span></div>
+        </a>
+        <div class="hidden lg:flex items-center gap-1">
+          <a href="index.html" class="px-3 py-2 text-sm font-medium rounded-lg hover:bg-bg-light" style="color:var(--text-mid);">首頁</a>
+          <a href="about.html" class="px-3 py-2 text-sm font-medium rounded-lg" style="color:var(--brand-brown);background:var(--bg-light);">關於我們</a>
+          <div class="nav-dropdown"><button class="px-3 py-2 text-sm font-medium rounded-lg hover:bg-bg-light flex items-center gap-1" style="color:var(--text-mid);">委託管理<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="nav-dropdown-menu"><a href="management.html#agent-rent">代租代管</a><a href="management.html#package-rent">包租代管</a><a href="management.html#partner-agency">合作代理</a><a href="management.html#revenue-share">合作拆帳</a></div></div>
+          <div class="nav-dropdown"><button class="px-3 py-2 text-sm font-medium rounded-lg hover:bg-bg-light flex items-center gap-1" style="color:var(--text-mid);">空間改造<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="nav-dropdown-menu"><a href="renovation.html#partition">隔套裝修</a><a href="renovation.html#old-house">老屋改造</a><a href="renovation.html#soft-decor">軟裝設計</a><a href="renovation.html#cases">改造案例</a></div></div>
+          <a href="commercial.html" class="px-3 py-2 text-sm font-medium rounded-lg hover:bg-bg-light" style="color:var(--text-mid);">商空租借</a>
+          <div class="nav-dropdown"><button class="px-3 py-2 text-sm font-medium rounded-lg hover:bg-bg-light flex items-center gap-1" style="color:var(--text-mid);">房源查詢<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="nav-dropdown-menu"><a href="properties.html?type=長租">長租房型</a><a href="properties.html?type=短租">短租房型</a></div></div>
+          <div class="nav-dropdown"><button class="px-3 py-2 text-sm font-medium rounded-lg hover:bg-bg-light flex items-center gap-1" style="color:var(--text-mid);">投資買賣<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="nav-dropdown-menu"><a href="investment.html#domestic">國內銷售</a><a href="investment.html#overseas">海外投資</a></div></div>
+          <div class="nav-dropdown"><button class="px-3 py-2 text-sm font-medium rounded-lg hover:bg-bg-light flex items-center gap-1" style="color:var(--text-mid);">JUSUO Blog<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="nav-dropdown-menu"><a href="blog.html?cat=landlord">房東必讀</a><a href="blog.html?cat=ai">AI 工作術</a><a href="blog.html?cat=newsletter">電子報</a></div></div>
+          <a href="contact.html" class="ml-2 px-4 py-2 text-sm font-semibold rounded-lg text-white hover:opacity-90" style="background:var(--brand-brown);">聯絡我們</a>
+        </div>
+        <button id="hamburger" class="lg:hidden p-2 rounded-lg hover:bg-bg-light" style="color:var(--text-dark);">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="lg:hidden border-t border-border-col bg-bg-main px-4 pb-4">
+      <div class="pt-3 space-y-1">
+        <a href="index.html" class="block px-4 py-2.5 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-dark);">首頁</a>
+        <a href="about.html" class="block px-4 py-2.5 rounded-lg font-medium text-sm" style="color:var(--brand-brown);background:var(--bg-light);">關於我們</a>
+        <a href="management.html" class="block px-4 py-2.5 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-dark);">委託管理</a>
+        <a href="renovation.html" class="block px-4 py-2.5 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-dark);">空間改造</a>
+        <a href="commercial.html" class="block px-4 py-2.5 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-dark);">商空租借</a>
+        <a href="properties.html" class="block px-4 py-2.5 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-dark);">房源查詢</a>
+        <a href="investment.html" class="block px-4 py-2.5 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-dark);">投資買賣</a>
+        <a href="blog.html" class="block px-4 py-2.5 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-dark);">JUSUO Blog</a>
+        <a href="contact.html" class="block px-4 py-2.5 rounded-lg text-sm font-semibold text-center text-white mt-2" style="background:var(--brand-brown);">聯絡我們</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="page-hero pt-32 pb-20 relative overflow-hidden">
+    <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+      <p class="text-sm font-semibold tracking-widest mb-3" style="color:var(--brand-gold);">ABOUT US</p>
+      <h1 class="text-4xl md:text-5xl font-bold mb-6" style="color:var(--text-dark);">從一間老房子<br>開始的故事</h1>
+      <p class="text-base leading-relaxed max-w-xl mx-auto" style="color:var(--text-mid);">JUSUO 居所成立於 2021 年，從台北一間 30 年老公寓的翻修開始，逐步建立起以「讓空間說話」為核心的租賃管理品牌。</p>
+    </div>
+  </section>
+
+  <!-- 品牌故事 -->
+  <section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <p class="text-sm font-semibold tracking-widest mb-4" style="color:var(--brand-gold);">OUR STORY</p>
+          <h2 class="text-3xl font-bold mb-6" style="color:var(--text-dark);">不只是租房，<br>是空間的第二次生命</h2>
+          <div class="space-y-4 text-sm leading-relaxed" style="color:var(--text-mid);">
+            <p>JUSUO 居所（台語諧音「居所」）的誕生，來自創辦人 Sean 在一次偶然中接手家族老公寓後的深刻體悟：台灣有太多閒置、低效、被漠視的空間，等待被重新看見。</p>
+            <p>Sean 花了三個月時間，自己學設計、找工班、監工裝修，把一間漏水、壁癌、格局凌亂的老公寓，改造成月租 22,000 元的精緻套房。這次經驗讓他意識到，空間的潛力往往被屋主自己低估了。</p>
+            <p>2021 年，JUSUO 居所正式成立。我們的核心理念很簡單：用專業打理屋主的物件，讓房客住得舒心，讓屋主省心，共創三贏的租賃生態。</p>
+            <p>如今，JUSUO 已服務超過 50 位屋主，代管 30 間以上物件，並持續透過電子報、線上課程，分享租賃管理與 AI 數位工作術，幫助更多人成為聰明屋主。</p>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="w-full rounded-2xl flex items-center justify-center font-medium text-sm" style="background:#8B6B4A; color:#ffffff; height:450px;">JUSUO 品牌故事</div>
+          <div class="absolute -bottom-6 -left-6 bg-white rounded-2xl p-6 shadow-xl border border-border-col">
+            <div class="text-3xl font-bold mb-1" style="color:var(--brand-brown);">5 年</div>
+            <div class="text-sm" style="color:var(--text-mid);">深耕台北租賃市場</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 數字指標 -->
+  <section class="py-16 bg-bg-light">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div>
+          <div class="text-4xl font-bold mb-2" style="color:var(--brand-brown);"><span class="stat-number" data-target="30">0</span>+</div>
+          <p class="text-sm font-medium" style="color:var(--text-mid);">代管房源</p>
+        </div>
+        <div>
+          <div class="text-4xl font-bold mb-2" style="color:var(--brand-brown);"><span class="stat-number" data-target="50">0</span>+</div>
+          <p class="text-sm font-medium" style="color:var(--text-mid);">服務屋主</p>
+        </div>
+        <div>
+          <div class="text-4xl font-bold mb-2" style="color:var(--brand-brown);"><span class="stat-number" data-target="5">0</span>年</div>
+          <p class="text-sm font-medium" style="color:var(--text-mid);">品牌經驗</p>
+        </div>
+        <div>
+          <div class="text-4xl font-bold mb-2" style="color:var(--brand-brown);"><span class="stat-number" data-target="98">0</span>%</div>
+          <p class="text-sm font-medium" style="color:var(--text-mid);">屋主滿意度</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 創辦人介紹 -->
+  <section class="py-20 bg-white">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <p class="text-sm font-semibold tracking-widest mb-3" style="color:var(--brand-gold);">FOUNDER</p>
+        <h2 class="text-3xl font-bold" style="color:var(--text-dark);">創辦人介紹</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div class="text-center md:text-left">
+          <div class="w-48 h-48 rounded-full overflow-hidden mx-auto md:mx-0 mb-6 border-4 border-border-col">
+            <div class="w-full h-full flex items-center justify-center font-medium text-sm" style="background:#B8A898; color:#ffffff; ">創辦人照片</div>
+          </div>
+          <h3 class="text-2xl font-bold mb-1" style="color:var(--text-dark);">Sean 劉冠炫</h3>
+          <p class="text-sm mb-4" style="color:var(--brand-brown);">JUSUO 居所 創辦人</p>
+          <div class="flex gap-3 justify-center md:justify-start">
+            <a href="https://www.instagram.com/ju_suo666/" target="_blank" class="w-10 h-10 rounded-xl flex items-center justify-center border border-border-col hover:border-brand-brown transition-colors" style="color:var(--text-mid);">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="space-y-4 text-sm leading-relaxed" style="color:var(--text-mid);">
+          <p>Sean 是台灣新生代的超級個體實踐者，同時也是「JUSUO 居所」品牌的創辦人。他相信現代人應該善用科技工具，讓工作與生活都更有效率。</p>
+          <p>在創業之前，Sean 曾在房仲業積累數年的第一線銷售與管理經驗，深刻了解屋主痛點——特別是那些工作忙碌、沒時間自己管房、卻又擔心把物件交給陌生人的屋主。</p>
+          <p>JUSUO 居所的成立，就是要解決這個痛點。Sean 帶領團隊，整合裝修、法規、租客審查、日常維護等環節，讓每一位委託的屋主都能真正放心、省心。</p>
+          <p>他同時在 IG 帳號 <a href="https://www.instagram.com/ju_suo666/" target="_blank" class="underline" style="color:var(--brand-brown);">@ju_suo666</a> 持續分享租賃管理知識與 AI 工作術，也定期撰寫 JUSUO 週報，讓更多人能從他的實戰經驗中受益。</p>
+          <div class="flex flex-wrap gap-2 mt-4">
+            <span class="px-3 py-1 rounded-full text-xs font-medium" style="background:var(--bg-light);color:var(--text-mid);">租賃管理</span>
+            <span class="px-3 py-1 rounded-full text-xs font-medium" style="background:var(--bg-light);color:var(--text-mid);">空間改造</span>
+            <span class="px-3 py-1 rounded-full text-xs font-medium" style="background:var(--bg-light);color:var(--text-mid);">AI 工作術</span>
+            <span class="px-3 py-1 rounded-full text-xs font-medium" style="background:var(--bg-light);color:var(--text-mid);">超級個體</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 服務地區 -->
+  <section class="py-20 bg-bg-light">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <p class="text-sm font-semibold tracking-widest mb-3" style="color:var(--brand-gold);">SERVICE AREAS</p>
+        <h2 class="text-3xl font-bold" style="color:var(--text-dark);">服務範圍</h2>
+        <p class="text-sm mt-3" style="color:var(--text-mid);">目前深耕台北市與新北市，並持續擴展中</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-white rounded-2xl p-8 border border-border-col">
+          <h3 class="font-bold text-lg mb-4 flex items-center gap-2" style="color:var(--text-dark);">
+            <span class="w-8 h-8 rounded-lg flex items-center justify-center text-white text-xs font-bold" style="background:var(--brand-brown);">北</span>
+            台北市
+          </h3>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="flex items-center gap-2 text-sm" style="color:var(--text-mid);"><span style="color:var(--brand-green);">✓</span> 中山區</div>
+            <div class="flex items-center gap-2 text-sm" style="color:var(--text-mid);"><span style="color:var(--brand-green);">✓</span> 大安區</div>
+            <div class="flex items-center gap-2 text-sm" style="color:var(--text-mid);"><span style="color:var(--brand-green);">✓</span> 信義區</div>
+            <div class="flex items-center gap-2 text-sm" style="color:var(--text-mid);"><span style="color:var(--brand-green);">✓</span> 松山區</div>
+            <div class="flex items-center gap-2 text-sm" style="color:var(--text-mid);"><span style="color:var(--brand-green);">✓</span> 內湖區</div>
+            <div class="flex items-center gap-2 text-sm" style="color:var(--text-mid);"><span style="color:var(--brand-green);">✓</span> 南港區</div>
+            <div class="flex items-center gap-2 text-sm" style="color:var(--text-mid);"><span style="color:var(--brand-green);">✓</span> 士林區</div>
+            <div class="flex items-center gap-2 text-sm" style="color:var(--text-mid);"><span style="color:var(--brand-green);">✓</span> 北投區</div>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl p-8 border border-border-col">
+          <h3 class="font-bold text-lg mb-4 flex items-center gap-2" style="color:var(--text-dark);">
+            <span class="w-8 h-8 rounded-lg flex items-center justify-center text-white text-xs font-bold" style="background:var(--brand-green);">新</span>
+            新北市
+          </h3>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="flex items-center gap-2 text-sm" style="color:var(--text-mid);"><span style="color:var(--brand-green);">✓</span> 板橋區</div>
+            <div class="flex items-center gap-2 text-sm" style="color:var(--text-mid);"><span style="color:var(--brand-green);">✓</span> 三重區</div>
+            <div class="flex items-center gap-2 text-sm" style="color:var(--text-mid);"><span style="color:var(--brand-green);">✓</span> 中和區</div>
+            <div class="flex items-center gap-2 text-sm" style="color:var(--text-mid);"><span style="color:var(--brand-green);">✓</span> 永和區</div>
+            <div class="flex items-center gap-2 text-sm" style="color:var(--text-mid); opacity:0.5;"><span>◎</span> 新莊區（擴展中）</div>
+            <div class="flex items-center gap-2 text-sm" style="color:var(--text-mid); opacity:0.5;"><span>◎</span> 汐止區（擴展中）</div>
+          </div>
+          <p class="text-xs mt-4 p-3 rounded-lg" style="background:var(--bg-light);color:var(--text-mid);">其他地區如有需求，歡迎先聯絡評估，我們將視案件條件彈性服務。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 媒體報導 / 合作夥伴 -->
+  <section class="py-16 bg-white border-y border-border-col">
+    <div class="max-w-5xl mx-auto px-4 text-center">
+      <p class="text-sm font-semibold tracking-widest mb-8" style="color:var(--text-mid);">曾被報導 ・ 信任合作夥伴</p>
+      <div class="flex flex-wrap justify-center gap-8 items-center opacity-50">
+        <div class="px-6 py-3 rounded-lg border border-border-col text-sm font-semibold" style="color:var(--text-mid);">聯合報</div>
+        <div class="px-6 py-3 rounded-lg border border-border-col text-sm font-semibold" style="color:var(--text-mid);">商業周刊</div>
+        <div class="px-6 py-3 rounded-lg border border-border-col text-sm font-semibold" style="color:var(--text-mid);">591 租屋</div>
+        <div class="px-6 py-3 rounded-lg border border-border-col text-sm font-semibold" style="color:var(--text-mid);">Airbnb Taiwan</div>
+        <div class="px-6 py-3 rounded-lg border border-border-col text-sm font-semibold" style="color:var(--text-mid);">數位時代</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 newsletter-bg text-center">
+    <div class="max-w-2xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-white mb-4">想認識 JUSUO 更多？</h2>
+      <p class="text-white/80 text-base mb-8">預約免費諮詢，讓我們了解你的物件狀況，為你量身規劃最適合的管理方案。</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="contact.html" class="btn-primary" style="background:white;color:var(--brand-brown);">預約免費諮詢</a>
+        <a href="management.html" class="btn-secondary">了解委託方案</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-14">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+        <div><div class="flex items-center gap-2 mb-4"><div class="w-9 h-9 rounded-xl flex items-center justify-center text-white text-sm font-bold" style="background:var(--brand-brown);">居</div><span class="font-bold text-white text-lg">JUSUO 居所</span></div><p class="text-sm" style="color:rgba(255,255,255,0.55);">台灣租賃媒合・空間活化・老屋改造</p></div>
+        <div><h4 class="font-semibold text-white mb-4 text-sm">服務項目</h4><ul class="space-y-2.5"><li><a href="management.html" class="text-sm" style="color:rgba(255,255,255,0.55);">委託管理</a></li><li><a href="renovation.html" class="text-sm" style="color:rgba(255,255,255,0.55);">空間改造</a></li><li><a href="commercial.html" class="text-sm" style="color:rgba(255,255,255,0.55);">商空租借</a></li><li><a href="investment.html" class="text-sm" style="color:rgba(255,255,255,0.55);">投資買賣</a></li></ul></div>
+        <div><h4 class="font-semibold text-white mb-4 text-sm">學習資源</h4><ul class="space-y-2.5"><li><a href="blog.html?cat=landlord" class="text-sm" style="color:rgba(255,255,255,0.55);">房東必讀</a></li><li><a href="blog.html?cat=ai" class="text-sm" style="color:rgba(255,255,255,0.55);">AI 工作術</a></li><li><a href="blog.html?cat=newsletter" class="text-sm" style="color:rgba(255,255,255,0.55);">JUSUO 週報</a></li></ul></div>
+        <div><h4 class="font-semibold text-white mb-4 text-sm">聯絡我們</h4><ul class="space-y-3"><li class="text-sm" style="color:rgba(255,255,255,0.55);">sean860619@gmail.com</li><li class="text-sm" style="color:rgba(255,255,255,0.55);">台北市・新北市服務</li></ul></div>
+      </div>
+      <div class="pt-8 border-t border-white/10 text-center"><p class="text-xs" style="color:rgba(255,255,255,0.35);">© 2026 JUSUO 居所 版權所有</p></div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

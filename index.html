@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JUSUO 居所 ｜ 台灣租賃媒合・空間活化・老屋改造</title>
+  <meta name="description" content="JUSUO 居所 — 台灣專業租賃管理品牌，提供代租代管、包租代管、老屋改造、商空租借等全方位服務，讓每一個空間都能發揮最大價值。">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'bg-main':    '#FAF8F5',
+            'bg-card':    '#FFFFFF',
+            'bg-light':   '#F0EBE3',
+            'text-dark':  '#2D2620',
+            'text-mid':   '#6B5B4E',
+            'brand-brown':'#8B6B4A',
+            'brand-green':'#7A9E7E',
+            'brand-gold': '#C9A96E',
+            'border-col': '#E8DDD4',
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-bg-main text-text-dark">
+
+  <!-- ============================
+       導覽列
+       ============================ -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-bg-main/95 backdrop-blur-sm border-b border-border-col">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-2">
+          <div class="w-9 h-9 rounded-xl flex items-center justify-center text-white text-sm font-bold" style="background:var(--brand-brown);">居</div>
+          <div>
+            <span class="font-bold text-lg" style="color:var(--text-dark);">JUSUO</span>
+            <span class="text-sm ml-1" style="color:var(--text-mid);">居所</span>
+          </div>
+        </a>
+
+        <!-- 桌面版選單 -->
+        <div class="hidden lg:flex items-center gap-1">
+          <a href="index.html" class="px-3 py-2 text-sm font-medium rounded-lg transition-colors hover:bg-bg-light" style="color:var(--brand-brown);">首頁</a>
+          <a href="about.html" class="px-3 py-2 text-sm font-medium rounded-lg transition-colors hover:bg-bg-light" style="color:var(--text-mid);">關於我們</a>
+
+          <div class="nav-dropdown">
+            <button class="px-3 py-2 text-sm font-medium rounded-lg transition-colors hover:bg-bg-light flex items-center gap-1" style="color:var(--text-mid);">
+              委託管理
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="nav-dropdown-menu">
+              <a href="management.html#agent-rent">代租代管</a>
+              <a href="management.html#package-rent">包租代管</a>
+              <a href="management.html#partner-agency">合作代理</a>
+              <a href="management.html#revenue-share">合作拆帳</a>
+            </div>
+          </div>
+
+          <div class="nav-dropdown">
+            <button class="px-3 py-2 text-sm font-medium rounded-lg transition-colors hover:bg-bg-light flex items-center gap-1" style="color:var(--text-mid);">
+              空間改造
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="nav-dropdown-menu">
+              <a href="renovation.html#partition">隔套裝修</a>
+              <a href="renovation.html#old-house">老屋改造</a>
+              <a href="renovation.html#soft-decor">軟裝設計</a>
+              <a href="renovation.html#cases">改造案例</a>
+            </div>
+          </div>
+
+          <a href="commercial.html" class="px-3 py-2 text-sm font-medium rounded-lg transition-colors hover:bg-bg-light" style="color:var(--text-mid);">商空租借</a>
+
+          <div class="nav-dropdown">
+            <button class="px-3 py-2 text-sm font-medium rounded-lg transition-colors hover:bg-bg-light flex items-center gap-1" style="color:var(--text-mid);">
+              房源查詢
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="nav-dropdown-menu">
+              <a href="properties.html?type=長租">長租房型</a>
+              <a href="properties.html?type=短租">短租房型</a>
+            </div>
+          </div>
+
+          <div class="nav-dropdown">
+            <button class="px-3 py-2 text-sm font-medium rounded-lg transition-colors hover:bg-bg-light flex items-center gap-1" style="color:var(--text-mid);">
+              投資買賣
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="nav-dropdown-menu">
+              <a href="investment.html#domestic">國內銷售</a>
+              <a href="investment.html#overseas">海外投資</a>
+            </div>
+          </div>
+
+          <div class="nav-dropdown">
+            <button class="px-3 py-2 text-sm font-medium rounded-lg transition-colors hover:bg-bg-light flex items-center gap-1" style="color:var(--text-mid);">
+              JUSUO Blog
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="nav-dropdown-menu">
+              <a href="blog.html?cat=landlord">房東必讀</a>
+              <a href="blog.html?cat=ai">AI 工作術</a>
+              <a href="blog.html?cat=newsletter">電子報</a>
+            </div>
+          </div>
+
+          <a href="contact.html" class="ml-2 px-4 py-2 text-sm font-semibold rounded-lg text-white transition-all hover:opacity-90" style="background:var(--brand-brown);">聯絡我們</a>
+        </div>
+
+        <!-- 手機版漢堡 -->
+        <button id="hamburger" class="lg:hidden p-2 rounded-lg hover:bg-bg-light transition-colors" style="color:var(--text-dark);">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- 手機版選單 -->
+    <div id="mobile-menu" class="lg:hidden border-t border-border-col bg-bg-main px-4 pb-4">
+      <div class="pt-3 space-y-1">
+        <a href="index.html" class="block px-4 py-2.5 rounded-lg font-medium text-sm" style="color:var(--brand-brown);background:var(--bg-light);">首頁</a>
+        <a href="about.html" class="block px-4 py-2.5 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-dark);">關於我們</a>
+        <div>
+          <button class="mobile-dropdown-toggle w-full text-left px-4 py-2.5 rounded-lg text-sm hover:bg-bg-light flex justify-between items-center" style="color:var(--text-dark);">
+            委託管理
+            <svg class="dropdown-arrow w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="mobile-submenu space-y-1 mt-1">
+            <a href="management.html#agent-rent" class="block px-4 py-2 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-mid);">代租代管</a>
+            <a href="management.html#package-rent" class="block px-4 py-2 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-mid);">包租代管</a>
+            <a href="management.html#partner-agency" class="block px-4 py-2 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-mid);">合作代理</a>
+            <a href="management.html#revenue-share" class="block px-4 py-2 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-mid);">合作拆帳</a>
+          </div>
+        </div>
+        <div>
+          <button class="mobile-dropdown-toggle w-full text-left px-4 py-2.5 rounded-lg text-sm hover:bg-bg-light flex justify-between items-center" style="color:var(--text-dark);">
+            空間改造
+            <svg class="dropdown-arrow w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="mobile-submenu space-y-1 mt-1">
+            <a href="renovation.html#partition" class="block px-4 py-2 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-mid);">隔套裝修</a>
+            <a href="renovation.html#old-house" class="block px-4 py-2 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-mid);">老屋改造</a>
+            <a href="renovation.html#soft-decor" class="block px-4 py-2 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-mid);">軟裝設計</a>
+            <a href="renovation.html#cases" class="block px-4 py-2 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-mid);">改造案例</a>
+          </div>
+        </div>
+        <a href="commercial.html" class="block px-4 py-2.5 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-dark);">商空租借</a>
+        <div>
+          <button class="mobile-dropdown-toggle w-full text-left px-4 py-2.5 rounded-lg text-sm hover:bg-bg-light flex justify-between items-center" style="color:var(--text-dark);">
+            房源查詢
+            <svg class="dropdown-arrow w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="mobile-submenu space-y-1 mt-1">
+            <a href="properties.html?type=長租" class="block px-4 py-2 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-mid);">長租房型</a>
+            <a href="properties.html?type=短租" class="block px-4 py-2 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-mid);">短租房型</a>
+          </div>
+        </div>
+        <div>
+          <button class="mobile-dropdown-toggle w-full text-left px-4 py-2.5 rounded-lg text-sm hover:bg-bg-light flex justify-between items-center" style="color:var(--text-dark);">
+            投資買賣
+            <svg class="dropdown-arrow w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="mobile-submenu space-y-1 mt-1">
+            <a href="investment.html#domestic" class="block px-4 py-2 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-mid);">國內銷售</a>
+            <a href="investment.html#overseas" class="block px-4 py-2 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-mid);">海外投資</a>
+          </div>
+        </div>
+        <div>
+          <button class="mobile-dropdown-toggle w-full text-left px-4 py-2.5 rounded-lg text-sm hover:bg-bg-light flex justify-between items-center" style="color:var(--text-dark);">
+            JUSUO Blog
+            <svg class="dropdown-arrow w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="mobile-submenu space-y-1 mt-1">
+            <a href="blog.html?cat=landlord" class="block px-4 py-2 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-mid);">房東必讀</a>
+            <a href="blog.html?cat=ai" class="block px-4 py-2 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-mid);">AI 工作術</a>
+            <a href="blog.html?cat=newsletter" class="block px-4 py-2 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-mid);">電子報</a>
+          </div>
+        </div>
+        <a href="contact.html" class="block px-4 py-2.5 rounded-lg text-sm font-semibold text-center text-white mt-2" style="background:var(--brand-brown);">聯絡我們</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================
+       Hero 區塊
+       ============================ -->
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0">
+      <div class="w-full h-full flex items-center justify-center font-medium text-sm" style="background:#8B6B4A; color:#ffffff; ">台北公寓</div>
+      <div class="hero-overlay absolute inset-0"></div>
+    </div>
+    <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+      <div class="inline-block px-4 py-1.5 rounded-full text-sm font-medium mb-6 border border-white/30 text-white/80">
+        台灣租賃媒合 ・ 空間活化 ・ 老屋改造
+      </div>
+      <h1 class="hero-title text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+        讓房子<br>真正成為家
+      </h1>
+      <p class="text-lg md:text-xl text-white/85 mb-10 max-w-2xl mx-auto leading-relaxed">
+        JUSUO 居所，用專業打理你的物件，讓屋主省心、讓房客住心，創造三贏的租賃關係。
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="management.html" class="btn-primary text-base">我是屋主，想委託管理</a>
+        <a href="properties.html" class="btn-secondary text-base">我要找房源</a>
+      </div>
+    </div>
+    <!-- 向下捲動提示 -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60 animate-bounce">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ============================
+       數字成就
+       ============================ -->
+  <section class="py-16 bg-white border-y border-border-col">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div>
+          <div class="text-4xl font-bold mb-2" style="color:var(--brand-brown);">
+            <span class="stat-number" data-target="30">0</span>+
+          </div>
+          <p class="text-sm font-medium" style="color:var(--text-mid);">代管房源</p>
+        </div>
+        <div>
+          <div class="text-4xl font-bold mb-2" style="color:var(--brand-brown);">
+            <span class="stat-number" data-target="50">0</span>+
+          </div>
+          <p class="text-sm font-medium" style="color:var(--text-mid);">服務屋主</p>
+        </div>
+        <div>
+          <div class="text-4xl font-bold mb-2" style="color:var(--brand-brown);">
+            <span class="stat-number" data-target="5">0</span>年
+          </div>
+          <p class="text-sm font-medium" style="color:var(--text-mid);">品牌經驗</p>
+        </div>
+        <div>
+          <div class="text-4xl font-bold mb-2" style="color:var(--brand-brown);">
+            <span class="stat-number" data-target="98">0</span>%
+          </div>
+          <p class="text-sm font-medium" style="color:var(--text-mid);">屋主滿意度</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       我們的服務
+       ============================ -->
+  <section class="py-20 bg-bg-main">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-14">
+        <p class="text-sm font-semibold tracking-widest mb-3" style="color:var(--brand-gold);">OUR SERVICES</p>
+        <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color:var(--text-dark);">全方位空間管理服務</h2>
+        <p class="text-base max-w-xl mx-auto" style="color:var(--text-mid);">從租屋媒合到老屋改造，我們提供最完整的不動產空間服務，讓你的資產持續增值。</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- 服務卡片 -->
+        <a href="management.html" class="card-hover bg-white rounded-2xl p-8 border border-border-col block">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 text-2xl" style="background:var(--bg-light);">🏠</div>
+          <h3 class="text-lg font-bold mb-3" style="color:var(--text-dark);">租屋媒合</h3>
+          <p class="text-sm leading-relaxed" style="color:var(--text-mid);">協助屋主快速找到優質房客，完整租前審查，確保穩定租金收入。</p>
+          <div class="mt-6 flex items-center gap-2 text-sm font-semibold" style="color:var(--brand-brown);">
+            了解更多 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+        <a href="management.html#package-rent" class="card-hover bg-white rounded-2xl p-8 border border-border-col block">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 text-2xl" style="background:var(--bg-light);">📋</div>
+          <h3 class="text-lg font-bold mb-3" style="color:var(--text-dark);">包租代管</h3>
+          <p class="text-sm leading-relaxed" style="color:var(--text-mid);">JUSUO 直接承租後轉租，屋主每月固定收租，不受空置期影響。</p>
+          <div class="mt-6 flex items-center gap-2 text-sm font-semibold" style="color:var(--brand-brown);">
+            了解更多 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+        <a href="renovation.html" class="card-hover bg-white rounded-2xl p-8 border border-border-col block">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 text-2xl" style="background:var(--bg-light);">🔨</div>
+          <h3 class="text-lg font-bold mb-3" style="color:var(--text-dark);">老屋改造</h3>
+          <p class="text-sm leading-relaxed" style="color:var(--text-mid);">專業團隊操刀翻修，30 年老屋蛻變質感套房，租金報酬率大幅提升。</p>
+          <div class="mt-6 flex items-center gap-2 text-sm font-semibold" style="color:var(--brand-brown);">
+            了解更多 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+        <a href="commercial.html" class="card-hover bg-white rounded-2xl p-8 border border-border-col block">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 text-2xl" style="background:var(--bg-light);">🏢</div>
+          <h3 class="text-lg font-bold mb-3" style="color:var(--text-dark);">商空租借</h3>
+          <p class="text-sm leading-relaxed" style="color:var(--text-mid);">拍攝場地、工作坊、展覽空間彈性租借，按時計費，輕鬆預約。</p>
+          <div class="mt-6 flex items-center gap-2 text-sm font-semibold" style="color:var(--brand-brown);">
+            了解更多 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+        <a href="investment.html" class="card-hover bg-white rounded-2xl p-8 border border-border-col block">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 text-2xl" style="background:var(--bg-light);">📈</div>
+          <h3 class="text-lg font-bold mb-3" style="color:var(--text-dark);">投資買賣</h3>
+          <p class="text-sm leading-relaxed" style="color:var(--text-mid);">國內優質標的篩選、海外市場佈局，讓不動產投資更有策略。</p>
+          <div class="mt-6 flex items-center gap-2 text-sm font-semibold" style="color:var(--brand-brown);">
+            了解更多 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+        <a href="blog.html" class="card-hover bg-white rounded-2xl p-8 border border-border-col block">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 text-2xl" style="background:var(--bg-light);">📚</div>
+          <h3 class="text-lg font-bold mb-3" style="color:var(--text-dark);">課程與電子報</h3>
+          <p class="text-sm leading-relaxed" style="color:var(--text-mid);">JUSUO 週報＋ AI 數位工作術課程，幫你用科技做更聰明的房東。</p>
+          <div class="mt-6 flex items-center gap-2 text-sm font-semibold" style="color:var(--brand-brown);">
+            了解更多 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       本月優惠房型
+       ============================ -->
+  <section class="py-20 bg-bg-light">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex items-end justify-between mb-10">
+        <div>
+          <p class="text-sm font-semibold tracking-widest mb-2" style="color:var(--brand-gold);">FEATURED LISTINGS</p>
+          <h2 class="text-3xl md:text-4xl font-bold" style="color:var(--text-dark);">本月精選房源</h2>
+        </div>
+        <a href="properties.html" class="hidden sm:flex items-center gap-2 text-sm font-semibold" style="color:var(--brand-brown);">
+          查看全部房源 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- 房源卡 1 -->
+        <div class="property-card">
+          <div class="relative overflow-hidden" style="height:220px;">
+            <div class="w-full h-full flex items-center justify-center font-medium text-sm" style="background:#D4C4B5; color:#6B5B4E; ">中山區精緻套房</div>
+            <span class="absolute top-3 left-3 text-xs font-semibold px-3 py-1 rounded-full" style="background:rgba(122,158,126,0.9);color:white;">可租</span>
+            <span class="absolute top-3 right-3 badge-long text-xs font-semibold px-3 py-1 rounded-full">長租</span>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold text-base mb-1" style="color:var(--text-dark);">中山區精緻套房</h3>
+            <p class="text-sm mb-3" style="color:var(--text-mid);">台北市中山區 ・ 3F/7F ・ 8 坪</p>
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="text-xs px-2 py-1 rounded" style="background:var(--bg-light);color:var(--text-mid);">獨立衛浴</span>
+              <span class="text-xs px-2 py-1 rounded" style="background:var(--bg-light);color:var(--text-mid);">冷氣</span>
+              <span class="text-xs px-2 py-1 rounded" style="background:var(--bg-light);color:var(--text-mid);">洗衣機</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-xl font-bold" style="color:var(--brand-brown);">NT$18,000</span>
+                <span class="text-sm" style="color:var(--text-mid);">/月</span>
+              </div>
+              <span class="text-sm px-3 py-1 rounded-full" style="background:var(--bg-light);color:var(--text-mid);">套房</span>
+            </div>
+          </div>
+        </div>
+        <!-- 房源卡 2 -->
+        <div class="property-card">
+          <div class="relative overflow-hidden" style="height:220px;">
+            <div class="w-full h-full flex items-center justify-center font-medium text-sm" style="background:#D4C4B5; color:#6B5B4E; ">大安區溫馨一房一廳</div>
+            <span class="absolute top-3 left-3 text-xs font-semibold px-3 py-1 rounded-full" style="background:rgba(122,158,126,0.9);color:white;">可租</span>
+            <span class="absolute top-3 right-3 badge-long text-xs font-semibold px-3 py-1 rounded-full">長租</span>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold text-base mb-1" style="color:var(--text-dark);">大安區溫馨一房一廳</h3>
+            <p class="text-sm mb-3" style="color:var(--text-mid);">台北市大安區 ・ 5F/12F ・ 18 坪</p>
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="text-xs px-2 py-1 rounded" style="background:var(--bg-light);color:var(--text-mid);">獨立衛浴</span>
+              <span class="text-xs px-2 py-1 rounded" style="background:var(--bg-light);color:var(--text-mid);">停車位</span>
+              <span class="text-xs px-2 py-1 rounded" style="background:var(--bg-light);color:var(--text-mid);">電梯</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-xl font-bold" style="color:var(--brand-brown);">NT$28,000</span>
+                <span class="text-sm" style="color:var(--text-mid);">/月</span>
+              </div>
+              <span class="text-sm px-3 py-1 rounded-full" style="background:var(--bg-light);color:var(--text-mid);">一房一廳</span>
+            </div>
+          </div>
+        </div>
+        <!-- 房源卡 3 -->
+        <div class="property-card">
+          <div class="relative overflow-hidden" style="height:220px;">
+            <div class="w-full h-full flex items-center justify-center font-medium text-sm" style="background:#D4C4B5; color:#6B5B4E; ">中山區日式短租公寓</div>
+            <span class="absolute top-3 left-3 text-xs font-semibold px-3 py-1 rounded-full" style="background:rgba(122,158,126,0.9);color:white;">可租</span>
+            <span class="absolute top-3 right-3 badge-short text-xs font-semibold px-3 py-1 rounded-full">短租</span>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold text-base mb-1" style="color:var(--text-dark);">中山區日式短租公寓</h3>
+            <p class="text-sm mb-3" style="color:var(--text-mid);">台北市中山區 ・ 4F/8F ・ 12 坪</p>
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="text-xs px-2 py-1 rounded" style="background:var(--bg-light);color:var(--text-mid);">廚具</span>
+              <span class="text-xs px-2 py-1 rounded" style="background:var(--bg-light);color:var(--text-mid);">Wi-Fi</span>
+              <span class="text-xs px-2 py-1 rounded" style="background:var(--bg-light);color:var(--text-mid);">洗衣機</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-xl font-bold" style="color:var(--brand-brown);">NT$2,800</span>
+                <span class="text-sm" style="color:var(--text-mid);">/晚</span>
+              </div>
+              <span class="text-sm px-3 py-1 rounded-full" style="background:var(--bg-light);color:var(--text-mid);">套房</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-8 sm:hidden">
+        <a href="properties.html" class="btn-primary" style="background:var(--brand-brown);color:white;padding:12px 32px;border-radius:50px;font-weight:600;text-decoration:none;">查看全部房源</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       委託合作方案
+       ============================ -->
+  <section class="py-20 bg-white">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <p class="text-sm font-semibold tracking-widest mb-3" style="color:var(--brand-gold);">COOPERATION</p>
+        <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color:var(--text-dark);">選擇最適合你的合作方式</h2>
+        <p class="text-base" style="color:var(--text-mid);">不管你是屋主還是有資源的夥伴，我們都有對應的合作模式。</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- 合作代理 -->
+        <div class="rounded-2xl p-8 border-2 border-border-col hover:border-brand-brown transition-colors">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-6 text-xl" style="background:var(--bg-light);">🤝</div>
+          <h3 class="text-xl font-bold mb-3" style="color:var(--text-dark);">合作代理</h3>
+          <p class="text-sm leading-relaxed mb-6" style="color:var(--text-mid);">
+            你有租屋需求的客戶或房源，轉介給 JUSUO，由我們全權處理後續，成交後依比例拆分服務費。適合房仲、代書、社群主等有資源的夥伴。
+          </p>
+          <ul class="space-y-2 mb-6">
+            <li class="flex items-center gap-2 text-sm" style="color:var(--text-mid);">
+              <span style="color:var(--brand-green);">✓</span> 零投入成本，純轉介即可獲利
+            </li>
+            <li class="flex items-center gap-2 text-sm" style="color:var(--text-mid);">
+              <span style="color:var(--brand-green);">✓</span> 成交後 30 天內結算傭金
+            </li>
+            <li class="flex items-center gap-2 text-sm" style="color:var(--text-mid);">
+              <span style="color:var(--brand-green);">✓</span> 全程由 JUSUO 服務，無後顧之憂
+            </li>
+          </ul>
+          <a href="contact.html" class="inline-block text-sm font-semibold px-6 py-3 rounded-full border-2 transition-all hover:text-white" style="border-color:var(--brand-brown);color:var(--brand-brown);" onmouseover="this.style.background='var(--brand-brown)'" onmouseout="this.style.background='transparent'">洽談代理合作</a>
+        </div>
+        <!-- 合作拆帳 -->
+        <div class="rounded-2xl p-8 border-2 text-white" style="background:var(--brand-brown);border-color:var(--brand-brown);">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-6 text-xl bg-white/20">💰</div>
+          <h3 class="text-xl font-bold mb-3">合作拆帳</h3>
+          <p class="text-sm leading-relaxed mb-6 text-white/85">
+            你有空置的不動產，JUSUO 負責裝修規劃、招租、日常管理，租金依照約定比例分潤。適合有閒置房產卻不想自行管理的屋主。
+          </p>
+          <ul class="space-y-2 mb-6">
+            <li class="flex items-center gap-2 text-sm text-white/85">
+              <span class="text-white">✓</span> 屋主零煩惱，JUSUO 全包辦
+            </li>
+            <li class="flex items-center gap-2 text-sm text-white/85">
+              <span class="text-white">✓</span> 根據物件條件量身規劃分潤比例
+            </li>
+            <li class="flex items-center gap-2 text-sm text-white/85">
+              <span class="text-white">✓</span> 空置期由 JUSUO 共同承擔風險
+            </li>
+          </ul>
+          <a href="contact.html" class="inline-block text-sm font-semibold px-6 py-3 rounded-full bg-white transition-all hover:bg-white/90" style="color:var(--brand-brown);">了解拆帳方案</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       屋主見證
+       ============================ -->
+  <section class="py-20 bg-bg-light">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <p class="text-sm font-semibold tracking-widest mb-3" style="color:var(--brand-gold);">TESTIMONIALS</p>
+        <h2 class="text-3xl md:text-4xl font-bold" style="color:var(--text-dark);">屋主這樣說</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="testimonial-card">
+          <div class="pt-8">
+            <p class="text-sm leading-relaxed mb-6" style="color:var(--text-mid);">
+              委託 JUSUO 之後，我終於不用再半夜接到水管漏水的電話了。Sean 的團隊處理速度超快，房客滿意，我也安心，每個月固定時間入帳，真的太棒了。
+            </p>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold" style="background:var(--brand-brown);">陳</div>
+              <div>
+                <p class="font-semibold text-sm" style="color:var(--text-dark);">陳先生</p>
+                <p class="text-xs" style="color:var(--text-mid);">台北市大安區屋主</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="pt-8">
+            <p class="text-sm leading-relaxed mb-6" style="color:var(--text-mid);">
+              30 年的老公寓，原本空著不知道怎麼處理。JUSUO 幫我評估改造方案，隔成兩間套房後租金幾乎翻倍，這個決定真的做對了。改造過程也很有效率。
+            </p>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold" style="background:var(--brand-green);">林</div>
+              <div>
+                <p class="font-semibold text-sm" style="color:var(--text-dark);">林小姐</p>
+                <p class="text-xs" style="color:var(--text-mid);">新北市板橋區屋主</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="pt-8">
+            <p class="text-sm leading-relaxed mb-6" style="color:var(--text-mid);">
+              以前自己管房很累，合約、修繕、催租都要自己來。現在交給 JUSUO 後，我只要看每月的對帳單就好，時間省下來陪家人，品質提升很多。
+            </p>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold" style="background:var(--brand-gold);">張</div>
+              <div>
+                <p class="font-semibold text-sm" style="color:var(--text-dark);">張大哥</p>
+                <p class="text-xs" style="color:var(--text-mid);">台北市中山區屋主</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       JUSUO 週報訂閱
+       ============================ -->
+  <section class="py-20 newsletter-bg">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <div class="text-4xl mb-6">📬</div>
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">訂閱 JUSUO 週報</h2>
+      <p class="text-white/80 text-base mb-8 max-w-xl mx-auto leading-relaxed">
+        每週一封，房東必讀乾貨 ✕ AI 工作術應用，讓你用更少的時間管更多的房，免費訂閱，隨時可退。
+      </p>
+      <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" data-formspree action="https://formspree.io/f/PLACEHOLDER" method="POST">
+        <input type="email" name="email" placeholder="輸入你的 Email" required
+          class="flex-1 px-5 py-3.5 rounded-full text-text-dark bg-white focus:outline-none focus:ring-2 text-sm"
+          style="focus-ring-color:var(--brand-gold);">
+        <button type="submit" class="px-6 py-3.5 rounded-full font-semibold text-sm text-white whitespace-nowrap transition-all hover:opacity-90" style="background:var(--brand-gold);">
+          立即訂閱
+        </button>
+      </form>
+      <p class="text-white/50 text-xs mt-4">已有 500+ 名房東訂閱，加入我們</p>
+    </div>
+  </section>
+
+  <!-- ============================
+       Footer
+       ============================ -->
+  <footer class="py-14">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+        <!-- Brand -->
+        <div class="md:col-span-1">
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-9 h-9 rounded-xl flex items-center justify-center text-white text-sm font-bold" style="background:var(--brand-brown);">居</div>
+            <div>
+              <span class="font-bold text-white text-lg">JUSUO</span>
+              <span class="text-sm ml-1" style="color:rgba(255,255,255,0.5);">居所</span>
+            </div>
+          </div>
+          <p class="text-sm leading-relaxed" style="color:rgba(255,255,255,0.55);">台灣租賃媒合・空間活化・老屋改造，讓每一個空間都能發揮最大價值。</p>
+          <div class="flex gap-3 mt-6">
+            <a href="https://www.instagram.com/ju_suo666/" target="_blank" class="w-9 h-9 rounded-lg flex items-center justify-center border border-white/20 text-white/60 hover:text-white hover:border-white/50 transition-all">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://line.me" target="_blank" class="w-9 h-9 rounded-lg flex items-center justify-center border border-white/20 text-white/60 hover:text-white hover:border-white/50 transition-all">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.247l-1.97 2.935c-.087.131-.244.207-.405.207H8.813a.473.473 0 01-.405-.207L6.438 8.247A.47.47 0 016.9 7.5h10.2a.47.47 0 01.462.747zm-1.512 4.253H7.95a.75.75 0 010-1.5h8.1a.75.75 0 010 1.5z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 服務 -->
+        <div>
+          <h4 class="font-semibold text-white mb-4 text-sm">我們的服務</h4>
+          <ul class="space-y-2.5">
+            <li><a href="management.html" class="text-sm" style="color:rgba(255,255,255,0.55);">委託管理</a></li>
+            <li><a href="renovation.html" class="text-sm" style="color:rgba(255,255,255,0.55);">空間改造</a></li>
+            <li><a href="commercial.html" class="text-sm" style="color:rgba(255,255,255,0.55);">商空租借</a></li>
+            <li><a href="investment.html" class="text-sm" style="color:rgba(255,255,255,0.55);">投資買賣</a></li>
+          </ul>
+        </div>
+
+        <!-- 資源 -->
+        <div>
+          <h4 class="font-semibold text-white mb-4 text-sm">學習資源</h4>
+          <ul class="space-y-2.5">
+            <li><a href="blog.html?cat=landlord" class="text-sm" style="color:rgba(255,255,255,0.55);">房東必讀</a></li>
+            <li><a href="blog.html?cat=ai" class="text-sm" style="color:rgba(255,255,255,0.55);">AI 工作術</a></li>
+            <li><a href="blog.html?cat=newsletter" class="text-sm" style="color:rgba(255,255,255,0.55);">JUSUO 週報</a></li>
+            <li><a href="properties.html" class="text-sm" style="color:rgba(255,255,255,0.55);">房源查詢</a></li>
+          </ul>
+        </div>
+
+        <!-- 聯絡 -->
+        <div>
+          <h4 class="font-semibold text-white mb-4 text-sm">聯絡我們</h4>
+          <ul class="space-y-3">
+            <li class="flex items-center gap-2 text-sm" style="color:rgba(255,255,255,0.55);">
+              <svg class="w-4 h-4 min-w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              sean860619@gmail.com
+            </li>
+            <li class="flex items-center gap-2 text-sm" style="color:rgba(255,255,255,0.55);">
+              <svg class="w-4 h-4 min-w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              台北市・新北市服務
+            </li>
+            <li class="flex items-center gap-2 text-sm" style="color:rgba(255,255,255,0.55);">
+              <svg class="w-4 h-4 min-w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.247l-1.97 2.935c-.087.131-.244.207-.405.207H8.813a.473.473 0 01-.405-.207L6.438 8.247A.47.47 0 016.9 7.5h10.2a.47.47 0 01.462.747z"/></svg>
+              LINE ID：@jusuo666
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <p class="text-xs" style="color:rgba(255,255,255,0.35);">© 2026 JUSUO 居所 版權所有</p>
+        <div class="flex gap-6">
+          <a href="#" class="text-xs" style="color:rgba(255,255,255,0.35);">隱私權政策</a>
+          <a href="#" class="text-xs" style="color:rgba(255,255,255,0.35);">服務條款</a>
+          <a href="contact.html" class="text-xs" style="color:rgba(255,255,255,0.35);">聯絡我們</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+# ============================
+# JUSUO 居所 - Decap CMS 設定
+# ============================
+# 使用說明：
+# 1. 部署至 Netlify 後，到 Netlify Identity 啟用身份驗證
+# 2. 在 Netlify Site Settings > Identity 啟用 Git Gateway
+# 3. 訪問 /admin/ 即可使用後台介面
+
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+locale: 'zh_Hant'
+
+collections:
+
+  # ============================
+  # 房源管理
+  # ============================
+  - name: "properties"
+    label: "房源管理"
+    label_singular: "房源"
+    folder: "_properties"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - { label: "房源標題", name: "title", widget: "string", hint: "例：中山區精緻套房" }
+      - { label: "所在縣市", name: "city", widget: "select", options: ["台北市", "新北市"] }
+      - { label: "行政區", name: "district", widget: "select", options: ["中山區", "大安區", "信義區", "松山區", "內湖區", "南港區", "士林區", "北投區", "板橋區", "三重區", "中和區", "永和區"] }
+      - { label: "房型", name: "type", widget: "select", options: ["套房", "雅房", "一房一廳", "兩房"] }
+      - { label: "租賃類型", name: "rentType", widget: "select", options: ["長租", "短租"] }
+      - { label: "租金（長租：月租；短租：每晚）", name: "price", widget: "number", value_type: "int" }
+      - { label: "坪數", name: "size", widget: "number", value_type: "float" }
+      - { label: "樓層（格式：3F/7F）", name: "floor", widget: "string" }
+      - { label: "房源特色（以逗號分隔）", name: "features", widget: "list", allow_add: true }
+      - { label: "封面圖片", name: "image", widget: "image" }
+      - { label: "是否可租", name: "available", widget: "boolean", default: true }
+      - { label: "房源描述", name: "description", widget: "text" }
+      - { label: "建立日期", name: "date", widget: "datetime", default: "" }
+
+  # ============================
+  # 改造案例管理
+  # ============================
+  - name: "renovation_cases"
+    label: "改造案例"
+    label_singular: "案例"
+    folder: "_renovation"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "案例標題", name: "title", widget: "string", hint: "例：中山區老公寓翻新" }
+      - { label: "地點", name: "location", widget: "string" }
+      - { label: "改造類型", name: "type", widget: "select", options: ["隔套裝修", "老屋改造", "軟裝設計"] }
+      - { label: "屋齡", name: "age", widget: "string", hint: "例：30 年" }
+      - { label: "工期（天）", name: "duration", widget: "number", value_type: "int" }
+      - { label: "改造前租金（NT$）", name: "rent_before", widget: "number", value_type: "int" }
+      - { label: "改造後租金（NT$）", name: "rent_after", widget: "number", value_type: "int" }
+      - { label: "改造前照片", name: "image_before", widget: "image" }
+      - { label: "改造後照片", name: "image_after", widget: "image" }
+      - { label: "案例說明", name: "description", widget: "text" }
+      - { label: "建立日期", name: "date", widget: "datetime", default: "" }
+
+  # ============================
+  # 部落格文章管理
+  # ============================
+  - name: "blog"
+    label: "Blog 文章"
+    label_singular: "文章"
+    folder: "_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "文章標題", name: "title", widget: "string" }
+      - { label: "分類", name: "category", widget: "select", options: [ { label: "房東必讀", value: "landlord" }, { label: "AI 工作術", value: "ai" }, { label: "電子報", value: "newsletter" } ] }
+      - { label: "封面圖片", name: "cover", widget: "image" }
+      - { label: "摘要", name: "excerpt", widget: "text", hint: "文章列表頁顯示的簡短說明（100字以內）" }
+      - { label: "預計閱讀時間（分鐘）", name: "read_time", widget: "number", value_type: "int" }
+      - { label: "發布日期", name: "date", widget: "datetime" }
+      - { label: "是否顯示", name: "published", widget: "boolean", default: true }
+      - { label: "文章內容", name: "body", widget: "markdown" }

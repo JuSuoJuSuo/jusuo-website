@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JUSUO Blog ｜ 房東必讀・AI工作術・電子報</title>
+  <meta name="description" content="JUSUO Blog 提供房東必讀知識、AI 數位工作術應用，以及 JUSUO 週報精選內容。">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={theme:{extend:{colors:{'bg-main':'#FAF8F5','bg-card':'#FFFFFF','bg-light':'#F0EBE3','text-dark':'#2D2620','text-mid':'#6B5B4E','brand-brown':'#8B6B4A','brand-green':'#7A9E7E','brand-gold':'#C9A96E','border-col':'#E8DDD4'}}}}</script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-bg-main text-text-dark">
+
+  <!-- 導覽列 -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-bg-main/95 backdrop-blur-sm border-b border-border-col">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center justify-between h-16">
+        <a href="index.html" class="flex items-center gap-2"><div class="w-9 h-9 rounded-xl flex items-center justify-center text-white text-sm font-bold" style="background:var(--brand-brown);">居</div><div><span class="font-bold text-lg" style="color:var(--text-dark);">JUSUO</span><span class="text-sm ml-1" style="color:var(--text-mid);">居所</span></div></a>
+        <div class="hidden lg:flex items-center gap-1">
+          <a href="index.html" class="px-3 py-2 text-sm font-medium rounded-lg hover:bg-bg-light" style="color:var(--text-mid);">首頁</a>
+          <a href="about.html" class="px-3 py-2 text-sm font-medium rounded-lg hover:bg-bg-light" style="color:var(--text-mid);">關於我們</a>
+          <div class="nav-dropdown"><button class="px-3 py-2 text-sm font-medium rounded-lg hover:bg-bg-light flex items-center gap-1" style="color:var(--text-mid);">委託管理<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="nav-dropdown-menu"><a href="management.html#agent-rent">代租代管</a><a href="management.html#package-rent">包租代管</a><a href="management.html#partner-agency">合作代理</a><a href="management.html#revenue-share">合作拆帳</a></div></div>
+          <div class="nav-dropdown"><button class="px-3 py-2 text-sm font-medium rounded-lg hover:bg-bg-light flex items-center gap-1" style="color:var(--text-mid);">空間改造<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="nav-dropdown-menu"><a href="renovation.html#partition">隔套裝修</a><a href="renovation.html#old-house">老屋改造</a><a href="renovation.html#soft-decor">軟裝設計</a><a href="renovation.html#cases">改造案例</a></div></div>
+          <a href="commercial.html" class="px-3 py-2 text-sm font-medium rounded-lg hover:bg-bg-light" style="color:var(--text-mid);">商空租借</a>
+          <div class="nav-dropdown"><button class="px-3 py-2 text-sm font-medium rounded-lg hover:bg-bg-light flex items-center gap-1" style="color:var(--text-mid);">房源查詢<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="nav-dropdown-menu"><a href="properties.html?type=長租">長租房型</a><a href="properties.html?type=短租">短租房型</a></div></div>
+          <div class="nav-dropdown"><button class="px-3 py-2 text-sm font-medium rounded-lg hover:bg-bg-light flex items-center gap-1" style="color:var(--text-mid);">投資買賣<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="nav-dropdown-menu"><a href="investment.html#domestic">國內銷售</a><a href="investment.html#overseas">海外投資</a></div></div>
+          <div class="nav-dropdown"><button class="px-3 py-2 text-sm font-medium rounded-lg flex items-center gap-1" style="color:var(--brand-brown);background:var(--bg-light);">JUSUO Blog<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="nav-dropdown-menu"><a href="blog.html?cat=landlord">房東必讀</a><a href="blog.html?cat=ai">AI 工作術</a><a href="blog.html?cat=newsletter">電子報</a></div></div>
+          <a href="contact.html" class="ml-2 px-4 py-2 text-sm font-semibold rounded-lg text-white hover:opacity-90" style="background:var(--brand-brown);">聯絡我們</a>
+        </div>
+        <button id="hamburger" class="lg:hidden p-2 rounded-lg hover:bg-bg-light" style="color:var(--text-dark);"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="lg:hidden border-t border-border-col bg-bg-main px-4 pb-4">
+      <div class="pt-3 space-y-1">
+        <a href="index.html" class="block px-4 py-2.5 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-dark);">首頁</a>
+        <a href="about.html" class="block px-4 py-2.5 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-dark);">關於我們</a>
+        <a href="management.html" class="block px-4 py-2.5 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-dark);">委託管理</a>
+        <a href="renovation.html" class="block px-4 py-2.5 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-dark);">空間改造</a>
+        <a href="commercial.html" class="block px-4 py-2.5 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-dark);">商空租借</a>
+        <a href="properties.html" class="block px-4 py-2.5 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-dark);">房源查詢</a>
+        <a href="investment.html" class="block px-4 py-2.5 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-dark);">投資買賣</a>
+        <a href="blog.html" class="block px-4 py-2.5 rounded-lg font-medium text-sm" style="color:var(--brand-brown);background:var(--bg-light);">JUSUO Blog</a>
+        <a href="contact.html" class="block px-4 py-2.5 rounded-lg text-sm font-semibold text-center text-white mt-2" style="background:var(--brand-brown);">聯絡我們</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="page-hero pt-32 pb-16">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <p class="text-sm font-semibold tracking-widest mb-3" style="color:var(--brand-gold);">JUSUO BLOG</p>
+      <h1 class="text-4xl md:text-5xl font-bold mb-4" style="color:var(--text-dark);">知識讓你成為<br>更聰明的屋主</h1>
+      <p class="text-base" style="color:var(--text-mid);">房東必讀、AI 工作術、週報精選，每週更新，免費閱讀。</p>
+    </div>
+  </section>
+
+  <!-- 主內容 + 側欄 -->
+  <section class="py-12">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex flex-col lg:flex-row gap-10">
+
+        <!-- 文章列表 -->
+        <div class="flex-1">
+          <!-- 分類 Tab -->
+          <div class="flex gap-2 flex-wrap mb-8 bg-bg-light p-1.5 rounded-full w-fit">
+            <button class="tab-btn active text-sm" data-cat="all">全部</button>
+            <button class="tab-btn text-sm" data-cat="landlord">🏠 房東必讀</button>
+            <button class="tab-btn text-sm" data-cat="ai">🤖 AI 工作術</button>
+            <button class="tab-btn text-sm" data-cat="newsletter">📬 電子報</button>
+          </div>
+
+          <!-- 文章卡片 -->
+          <div id="blog-grid" class="space-y-6">
+
+            <!-- 文章 1 -->
+            <article class="bg-white rounded-2xl overflow-hidden border border-border-col card-hover flex flex-col md:flex-row" data-cat="landlord">
+              <div class="md:w-64 min-w-64 h-48 md:h-auto overflow-hidden">
+                <div class="w-full h-full flex items-center justify-center font-medium text-sm" style="background:#D0C8C0; color:#6B5B4E; ">租屋合約陷阱</div>
+              </div>
+              <div class="p-6 flex flex-col justify-between flex-1">
+                <div>
+                  <div class="flex items-center gap-2 mb-3">
+                    <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:#E8F4EA;color:#4A8A50;">🏠 房東必讀</span>
+                    <span class="text-xs" style="color:var(--text-mid);">2026-05-15</span>
+                  </div>
+                  <h2 class="text-lg font-bold mb-2 hover:text-brand-brown transition-colors" style="color:var(--text-dark);">租屋合約 10 大陷阱，新手屋主一定要看</h2>
+                  <p class="text-sm leading-relaxed" style="color:var(--text-mid);">第一次出租房子，看到標準合約就直接簽了嗎？這樣很危險。本篇整理 10 個屋主常見疏漏，包括押金退還條款、修繕責任界定、提前退租違約金設計，讓你簽約前清楚自己的權益。</p>
+                </div>
+                <div class="flex items-center justify-between mt-4">
+                  <span class="text-xs" style="color:var(--text-mid);">📖 閱讀時間約 5 分鐘</span>
+                  <a href="#" class="text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all" style="color:var(--brand-brown);">閱讀全文 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 文章 2 -->
+            <article class="bg-white rounded-2xl overflow-hidden border border-border-col card-hover flex flex-col md:flex-row" data-cat="ai">
+              <div class="md:w-64 min-w-64 h-48 md:h-auto overflow-hidden">
+                <div class="w-full h-full flex items-center justify-center font-medium text-sm" style="background:#D0C8C0; color:#6B5B4E; ">AI 管理房東</div>
+              </div>
+              <div class="p-6 flex flex-col justify-between flex-1">
+                <div>
+                  <div class="flex items-center gap-2 mb-3">
+                    <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:#F0EBE3;color:#8B6B4A;">🤖 AI 工作術</span>
+                    <span class="text-xs" style="color:var(--text-mid);">2026-05-10</span>
+                  </div>
+                  <h2 class="text-lg font-bold mb-2" style="color:var(--text-dark);">用 Claude 寫租賃合約、催租信、修繕通知，一鍵搞定</h2>
+                  <p class="text-sm leading-relaxed" style="color:var(--text-mid);">AI 不只能幫你寫文章，還能成為你的房東助理。本文分享 Sean 實際使用的 5 個 AI Prompt，包括催租信範本、修繕回覆模板、房客審查問卷，直接複製使用。</p>
+                </div>
+                <div class="flex items-center justify-between mt-4">
+                  <span class="text-xs" style="color:var(--text-mid);">📖 閱讀時間約 8 分鐘</span>
+                  <a href="#" class="text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all" style="color:var(--brand-brown);">閱讀全文 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 文章 3 -->
+            <article class="bg-white rounded-2xl overflow-hidden border border-border-col card-hover flex flex-col md:flex-row" data-cat="newsletter">
+              <div class="md:w-64 min-w-64 h-48 md:h-auto overflow-hidden">
+                <div class="w-full h-full flex items-center justify-center font-medium text-sm" style="background:#D0C8C0; color:#6B5B4E; ">JUSUO 週報</div>
+              </div>
+              <div class="p-6 flex flex-col justify-between flex-1">
+                <div>
+                  <div class="flex items-center gap-2 mb-3">
+                    <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:#FFF3E0;color:#C9A96E;">📬 電子報</span>
+                    <span class="text-xs" style="color:var(--text-mid);">2026-05-05</span>
+                  </div>
+                  <h2 class="text-lg font-bold mb-2" style="color:var(--text-dark);">JUSUO 週報 #23｜台北租金指數創三年新高，屋主該怎麼應對？</h2>
+                  <p class="text-sm leading-relaxed" style="color:var(--text-mid);">本期週報整理台北市各行政區租金變化，並分析哪些地段的報酬率最值得關注。另附：本週 Sean 最常回答的 3 個屋主問題。</p>
+                </div>
+                <div class="flex items-center justify-between mt-4">
+                  <span class="text-xs" style="color:var(--text-mid);">📖 閱讀時間約 6 分鐘</span>
+                  <a href="#" class="text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all" style="color:var(--brand-brown);">閱讀全文 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 文章 4 -->
+            <article class="bg-white rounded-2xl overflow-hidden border border-border-col card-hover flex flex-col md:flex-row" data-cat="landlord">
+              <div class="md:w-64 min-w-64 h-48 md:h-auto overflow-hidden">
+                <div class="w-full h-full flex items-center justify-center font-medium text-sm" style="background:#D0C8C0; color:#6B5B4E; ">房屋修繕</div>
+              </div>
+              <div class="p-6 flex flex-col justify-between flex-1">
+                <div>
+                  <div class="flex items-center gap-2 mb-3">
+                    <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:#E8F4EA;color:#4A8A50;">🏠 房東必讀</span>
+                    <span class="text-xs" style="color:var(--text-mid);">2026-04-28</span>
+                  </div>
+                  <h2 class="text-lg font-bold mb-2" style="color:var(--text-dark);">修繕費誰出？屋主、房客責任怎麼劃分才合理</h2>
+                  <p class="text-sm leading-relaxed" style="color:var(--text-mid);">「馬桶壞了是誰的責任？」「冷氣不冷要屋主修嗎？」這是 Sean 最常被問到的問題。本文用白話文釐清修繕責任邊界，並提供一份可直接放進合約的責任劃分表。</p>
+                </div>
+                <div class="flex items-center justify-between mt-4">
+                  <span class="text-xs" style="color:var(--text-mid);">📖 閱讀時間約 6 分鐘</span>
+                  <a href="#" class="text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all" style="color:var(--brand-brown);">閱讀全文 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 文章 5 -->
+            <article class="bg-white rounded-2xl overflow-hidden border border-border-col card-hover flex flex-col md:flex-row" data-cat="ai">
+              <div class="md:w-64 min-w-64 h-48 md:h-auto overflow-hidden">
+                <div class="w-full h-full flex items-center justify-center font-medium text-sm" style="background:#D0C8C0; color:#6B5B4E; ">Notion 管理</div>
+              </div>
+              <div class="p-6 flex flex-col justify-between flex-1">
+                <div>
+                  <div class="flex items-center gap-2 mb-3">
+                    <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:#F0EBE3;color:#8B6B4A;">🤖 AI 工作術</span>
+                    <span class="text-xs" style="color:var(--text-mid);">2026-04-20</span>
+                  </div>
+                  <h2 class="text-lg font-bold mb-2" style="color:var(--text-dark);">用 Notion 打造你的房東管理系統：10 分鐘從零開始</h2>
+                  <p class="text-sm leading-relaxed" style="color:var(--text-mid);">管 5 間房，不需要付費軟體。Sean 分享他用 Notion 管理所有物件的系統，包括房客資料庫、繳費紀錄、修繕追蹤，附免費模板下載連結。</p>
+                </div>
+                <div class="flex items-center justify-between mt-4">
+                  <span class="text-xs" style="color:var(--text-mid);">📖 閱讀時間約 10 分鐘</span>
+                  <a href="#" class="text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all" style="color:var(--brand-brown);">閱讀全文 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 文章 6 -->
+            <article class="bg-white rounded-2xl overflow-hidden border border-border-col card-hover flex flex-col md:flex-row" data-cat="newsletter">
+              <div class="md:w-64 min-w-64 h-48 md:h-auto overflow-hidden">
+                <div class="w-full h-full flex items-center justify-center font-medium text-sm" style="background:#A0896E; color:#ffffff; ">老屋改造示意</div>
+              </div>
+              <div class="p-6 flex flex-col justify-between flex-1">
+                <div>
+                  <div class="flex items-center gap-2 mb-3">
+                    <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:#FFF3E0;color:#C9A96E;">📬 電子報</span>
+                    <span class="text-xs" style="color:var(--text-mid);">2026-04-14</span>
+                  </div>
+                  <h2 class="text-lg font-bold mb-2" style="color:var(--text-dark);">JUSUO 週報 #21｜老屋改造真實成本大公開：一間 30 年公寓，改完要花多少？</h2>
+                  <p class="text-sm leading-relaxed" style="color:var(--text-mid);">Sean 帶你拆解一間板橋 30 年老公寓的完整改造費用，從防水抓漏、電線更換、廁所翻新到軟裝採買，一筆一筆給你看，沒有在隱藏。</p>
+                </div>
+                <div class="flex items-center justify-between mt-4">
+                  <span class="text-xs" style="color:var(--text-mid);">📖 閱讀時間約 7 分鐘</span>
+                  <a href="#" class="text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all" style="color:var(--brand-brown);">閱讀全文 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- 側欄 -->
+        <div class="lg:w-80">
+          <!-- 電子報訂閱 -->
+          <div class="rounded-2xl p-6 text-white mb-6 newsletter-bg">
+            <div class="text-2xl mb-3">📬</div>
+            <h3 class="font-bold text-lg mb-2">訂閱 JUSUO 週報</h3>
+            <p class="text-sm text-white/80 mb-4 leading-relaxed">每週一封，房東知識 + AI 工作術，500+ 屋主已訂閱。</p>
+            <form data-formspree action="https://formspree.io/f/PLACEHOLDER" method="POST" class="space-y-2">
+              <input type="email" name="email" placeholder="your@email.com" required class="w-full px-4 py-3 rounded-xl text-text-dark text-sm focus:outline-none">
+              <button type="submit" class="w-full py-3 rounded-xl font-semibold text-sm text-white transition-all hover:opacity-90" style="background:var(--brand-gold);">免費訂閱</button>
+            </form>
+          </div>
+
+          <!-- 熱門文章 -->
+          <div class="bg-white rounded-2xl p-6 border border-border-col mb-6">
+            <h3 class="font-bold mb-4" style="color:var(--text-dark);">熱門文章</h3>
+            <div class="space-y-4">
+              <a href="#" class="flex gap-3 group">
+                <div class="w-16 h-14 rounded-lg overflow-hidden min-w-16">
+                  <div class="w-full h-full  group- transition-transform duration-300 flex items-center justify-center font-medium text-sm" style="background:#D0C8C0; color:#6B5B4E; ">圖片</div>
+                </div>
+                <div>
+                  <p class="text-xs font-medium leading-snug group-hover:text-brand-brown transition-colors" style="color:var(--text-dark);">租屋合約 10 大陷阱，新手屋主一定要看</p>
+                  <p class="text-xs mt-1" style="color:var(--text-mid);">2026-05-15</p>
+                </div>
+              </a>
+              <a href="#" class="flex gap-3 group">
+                <div class="w-16 h-14 rounded-lg overflow-hidden min-w-16">
+                  <div class="w-full h-full  group- transition-transform duration-300 flex items-center justify-center font-medium text-sm" style="background:#D0C8C0; color:#6B5B4E; ">圖片</div>
+                </div>
+                <div>
+                  <p class="text-xs font-medium leading-snug group-hover:text-brand-brown transition-colors" style="color:var(--text-dark);">用 Claude 寫租賃合約、催租信</p>
+                  <p class="text-xs mt-1" style="color:var(--text-mid);">2026-05-10</p>
+                </div>
+              </a>
+              <a href="#" class="flex gap-3 group">
+                <div class="w-16 h-14 rounded-lg overflow-hidden min-w-16">
+                  <div class="w-full h-full  group- transition-transform duration-300 flex items-center justify-center font-medium text-sm" style="background:#D0C8C0; color:#6B5B4E; ">圖片</div>
+                </div>
+                <div>
+                  <p class="text-xs font-medium leading-snug group-hover:text-brand-brown transition-colors" style="color:var(--text-dark);">用 Notion 打造房東管理系統</p>
+                  <p class="text-xs mt-1" style="color:var(--text-mid);">2026-04-20</p>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- 標籤雲 -->
+          <div class="bg-white rounded-2xl p-6 border border-border-col">
+            <h3 class="font-bold mb-4" style="color:var(--text-dark);">文章標籤</h3>
+            <div class="flex flex-wrap gap-2">
+              <a href="#" class="text-xs px-3 py-1.5 rounded-full hover:text-white transition-all" style="background:var(--bg-light);color:var(--text-mid);" onmouseover="this.style.background='var(--brand-brown)'" onmouseout="this.style.background='var(--bg-light)'">合約</a>
+              <a href="#" class="text-xs px-3 py-1.5 rounded-full hover:text-white transition-all" style="background:var(--bg-light);color:var(--text-mid);" onmouseover="this.style.background='var(--brand-brown)'" onmouseout="this.style.background='var(--bg-light)'">AI 工具</a>
+              <a href="#" class="text-xs px-3 py-1.5 rounded-full hover:text-white transition-all" style="background:var(--bg-light);color:var(--text-mid);" onmouseover="this.style.background='var(--brand-brown)'" onmouseout="this.style.background='var(--bg-light)'">修繕</a>
+              <a href="#" class="text-xs px-3 py-1.5 rounded-full hover:text-white transition-all" style="background:var(--bg-light);color:var(--text-mid);" onmouseover="this.style.background='var(--brand-brown)'" onmouseout="this.style.background='var(--bg-light)'">租金</a>
+              <a href="#" class="text-xs px-3 py-1.5 rounded-full hover:text-white transition-all" style="background:var(--bg-light);color:var(--text-mid);" onmouseover="this.style.background='var(--brand-brown)'" onmouseout="this.style.background='var(--bg-light)'">老屋改造</a>
+              <a href="#" class="text-xs px-3 py-1.5 rounded-full hover:text-white transition-all" style="background:var(--bg-light);color:var(--text-mid);" onmouseover="this.style.background='var(--brand-brown)'" onmouseout="this.style.background='var(--bg-light)'">Notion</a>
+              <a href="#" class="text-xs px-3 py-1.5 rounded-full hover:text-white transition-all" style="background:var(--bg-light);color:var(--text-mid);" onmouseover="this.style.background='var(--brand-brown)'" onmouseout="this.style.background='var(--bg-light)'">包租代管</a>
+              <a href="#" class="text-xs px-3 py-1.5 rounded-full hover:text-white transition-all" style="background:var(--bg-light);color:var(--text-mid);" onmouseover="this.style.background='var(--brand-brown)'" onmouseout="this.style.background='var(--bg-light)'">投資</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-14">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+        <div><div class="flex items-center gap-2 mb-4"><div class="w-9 h-9 rounded-xl flex items-center justify-center text-white text-sm font-bold" style="background:var(--brand-brown);">居</div><span class="font-bold text-white text-lg">JUSUO 居所</span></div><p class="text-sm" style="color:rgba(255,255,255,0.55);">台灣租賃媒合・空間活化・老屋改造</p></div>
+        <div><h4 class="font-semibold text-white mb-4 text-sm">服務項目</h4><ul class="space-y-2.5"><li><a href="management.html" class="text-sm" style="color:rgba(255,255,255,0.55);">委託管理</a></li><li><a href="renovation.html" class="text-sm" style="color:rgba(255,255,255,0.55);">空間改造</a></li><li><a href="commercial.html" class="text-sm" style="color:rgba(255,255,255,0.55);">商空租借</a></li><li><a href="investment.html" class="text-sm" style="color:rgba(255,255,255,0.55);">投資買賣</a></li></ul></div>
+        <div><h4 class="font-semibold text-white mb-4 text-sm">學習資源</h4><ul class="space-y-2.5"><li><a href="blog.html?cat=landlord" class="text-sm" style="color:rgba(255,255,255,0.55);">房東必讀</a></li><li><a href="blog.html?cat=ai" class="text-sm" style="color:rgba(255,255,255,0.55);">AI 工作術</a></li><li><a href="blog.html?cat=newsletter" class="text-sm" style="color:rgba(255,255,255,0.55);">電子報</a></li></ul></div>
+        <div><h4 class="font-semibold text-white mb-4 text-sm">聯絡我們</h4><ul class="space-y-3"><li class="text-sm" style="color:rgba(255,255,255,0.55);">sean860619@gmail.com</li><li class="text-sm" style="color:rgba(255,255,255,0.55);">LINE: @jusuo666</li></ul></div>
+      </div>
+      <div class="pt-8 border-t border-white/10 text-center"><p class="text-xs" style="color:rgba(255,255,255,0.35);">© 2026 JUSUO 居所 版權所有</p></div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // 分類 Tab 篩選
+    const catBtns = document.querySelectorAll('[data-cat]');
+    const articles = document.querySelectorAll('#blog-grid article');
+    catBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        catBtns.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        const cat = this.dataset.cat;
+        articles.forEach(function (article) {
+          if (cat === 'all' || article.dataset.cat === cat) {
+            article.style.display = '';
+          } else {
+            article.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // 讀取 URL 參數預設分類
+    const params = new URLSearchParams(window.location.search);
+    const defaultCat = params.get('cat');
+    if (defaultCat) {
+      const btn = document.querySelector(`[data-cat="${defaultCat}"]`);
+      if (btn) btn.click();
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>委託管理 ｜ JUSUO 居所</title>
+  <meta name="description" content="JUSUO 居所提供代租代管、包租代管、合作代理、合作拆帳四種方案，讓屋主真正省心。">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={theme:{extend:{colors:{'bg-main':'#FAF8F5','bg-card':'#FFFFFF','bg-light':'#F0EBE3','text-dark':'#2D2620','text-mid':'#6B5B4E','brand-brown':'#8B6B4A','brand-green':'#7A9E7E','brand-gold':'#C9A96E','border-col':'#E8DDD4'}}}}</script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-bg-main text-text-dark">
+
+  <!-- 導覽列 -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-bg-main/95 backdrop-blur-sm border-b border-border-col">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center justify-between h-16">
+        <a href="index.html" class="flex items-center gap-2">
+          <div class="w-9 h-9 rounded-xl flex items-center justify-center text-white text-sm font-bold" style="background:var(--brand-brown);">居</div>
+          <div><span class="font-bold text-lg" style="color:var(--text-dark);">JUSUO</span><span class="text-sm ml-1" style="color:var(--text-mid);">居所</span></div>
+        </a>
+        <div class="hidden lg:flex items-center gap-1">
+          <a href="index.html" class="px-3 py-2 text-sm font-medium rounded-lg hover:bg-bg-light" style="color:var(--text-mid);">首頁</a>
+          <a href="about.html" class="px-3 py-2 text-sm font-medium rounded-lg hover:bg-bg-light" style="color:var(--text-mid);">關於我們</a>
+          <div class="nav-dropdown"><button class="px-3 py-2 text-sm font-medium rounded-lg flex items-center gap-1" style="color:var(--brand-brown);background:var(--bg-light);">委託管理<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="nav-dropdown-menu"><a href="#agent-rent">代租代管</a><a href="#package-rent">包租代管</a><a href="#partner-agency">合作代理</a><a href="#revenue-share">合作拆帳</a></div></div>
+          <div class="nav-dropdown"><button class="px-3 py-2 text-sm font-medium rounded-lg hover:bg-bg-light flex items-center gap-1" style="color:var(--text-mid);">空間改造<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="nav-dropdown-menu"><a href="renovation.html#partition">隔套裝修</a><a href="renovation.html#old-house">老屋改造</a><a href="renovation.html#soft-decor">軟裝設計</a><a href="renovation.html#cases">改造案例</a></div></div>
+          <a href="commercial.html" class="px-3 py-2 text-sm font-medium rounded-lg hover:bg-bg-light" style="color:var(--text-mid);">商空租借</a>
+          <div class="nav-dropdown"><button class="px-3 py-2 text-sm font-medium rounded-lg hover:bg-bg-light flex items-center gap-1" style="color:var(--text-mid);">房源查詢<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="nav-dropdown-menu"><a href="properties.html?type=長租">長租房型</a><a href="properties.html?type=短租">短租房型</a></div></div>
+          <div class="nav-dropdown"><button class="px-3 py-2 text-sm font-medium rounded-lg hover:bg-bg-light flex items-center gap-1" style="color:var(--text-mid);">投資買賣<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="nav-dropdown-menu"><a href="investment.html#domestic">國內銷售</a><a href="investment.html#overseas">海外投資</a></div></div>
+          <div class="nav-dropdown"><button class="px-3 py-2 text-sm font-medium rounded-lg hover:bg-bg-light flex items-center gap-1" style="color:var(--text-mid);">JUSUO Blog<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="nav-dropdown-menu"><a href="blog.html?cat=landlord">房東必讀</a><a href="blog.html?cat=ai">AI 工作術</a><a href="blog.html?cat=newsletter">電子報</a></div></div>
+          <a href="contact.html" class="ml-2 px-4 py-2 text-sm font-semibold rounded-lg text-white hover:opacity-90" style="background:var(--brand-brown);">聯絡我們</a>
+        </div>
+        <button id="hamburger" class="lg:hidden p-2 rounded-lg hover:bg-bg-light" style="color:var(--text-dark);"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="lg:hidden border-t border-border-col bg-bg-main px-4 pb-4">
+      <div class="pt-3 space-y-1">
+        <a href="index.html" class="block px-4 py-2.5 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-dark);">首頁</a>
+        <a href="about.html" class="block px-4 py-2.5 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-dark);">關於我們</a>
+        <a href="management.html" class="block px-4 py-2.5 rounded-lg font-medium text-sm" style="color:var(--brand-brown);background:var(--bg-light);">委託管理</a>
+        <a href="renovation.html" class="block px-4 py-2.5 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-dark);">空間改造</a>
+        <a href="commercial.html" class="block px-4 py-2.5 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-dark);">商空租借</a>
+        <a href="properties.html" class="block px-4 py-2.5 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-dark);">房源查詢</a>
+        <a href="investment.html" class="block px-4 py-2.5 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-dark);">投資買賣</a>
+        <a href="blog.html" class="block px-4 py-2.5 rounded-lg text-sm hover:bg-bg-light" style="color:var(--text-dark);">JUSUO Blog</a>
+        <a href="contact.html" class="block px-4 py-2.5 rounded-lg text-sm font-semibold text-center text-white mt-2" style="background:var(--brand-brown);">聯絡我們</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="page-hero pt-32 pb-20">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <p class="text-sm font-semibold tracking-widest mb-3" style="color:var(--brand-gold);">PROPERTY MANAGEMENT</p>
+      <h1 class="text-4xl md:text-5xl font-bold mb-6" style="color:var(--text-dark);">把物件交給我們，<br>你只要數錢就好</h1>
+      <p class="text-base leading-relaxed max-w-xl mx-auto" style="color:var(--text-mid);">從招租、合約到日常維護，JUSUO 提供四種靈活的委託管理方案，適合各種物件與需求。</p>
+    </div>
+  </section>
+
+  <!-- 四種合作方案 -->
+  <section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-14">
+        <h2 class="text-3xl font-bold" style="color:var(--text-dark);">選擇最適合你的方案</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <!-- 代租代管 -->
+        <div id="agent-rent" class="rounded-2xl p-8 border border-border-col bg-white">
+          <div class="flex items-start gap-4 mb-6">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl min-w-12" style="background:var(--bg-light);">🏠</div>
+            <div>
+              <h3 class="text-xl font-bold mb-1" style="color:var(--text-dark);">代租代管</h3>
+              <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:#E8F4EA;color:#4A8A50;">最多人選擇</span>
+            </div>
+          </div>
+          <p class="text-sm leading-relaxed mb-6" style="color:var(--text-mid);">物件仍由屋主持有，JUSUO 代為刊登、帶看、審查房客、簽約，出租後每月收取管理費，負責日常維護與租客關係管理。</p>
+          <div class="space-y-2 mb-6">
+            <p class="text-xs font-semibold mb-2" style="color:var(--text-dark);">適合對象</p>
+            <p class="text-sm" style="color:var(--text-mid);">忙碌的上班族屋主、外地屋主、想省麻煩但保有物件控制權的人</p>
+          </div>
+          <div class="grid grid-cols-2 gap-4 text-sm border-t border-border-col pt-4">
+            <div>
+              <p class="font-semibold mb-2" style="color:var(--brand-green);">✓ 優點</p>
+              <ul class="space-y-1 text-xs" style="color:var(--text-mid);">
+                <li>彈性，隨時可終止委託</li>
+                <li>屋主保留物件所有決定權</li>
+                <li>管理費透明，費率合理</li>
+              </ul>
+            </div>
+            <div>
+              <p class="font-semibold mb-2" style="color:#D9534F;">注意事項</p>
+              <ul class="space-y-1 text-xs" style="color:var(--text-mid);">
+                <li>空置期仍由屋主承擔</li>
+                <li>部分維修費用自付</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 包租代管 -->
+        <div id="package-rent" class="rounded-2xl p-8 border-2 text-white" style="background:var(--brand-brown);border-color:var(--brand-brown);">
+          <div class="flex items-start gap-4 mb-6">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl min-w-12 bg-white/20">📋</div>
+            <div>
+              <h3 class="text-xl font-bold mb-1">包租代管</h3>
+              <span class="text-xs px-3 py-1 rounded-full font-medium bg-white/20 text-white">最省心選擇</span>
+            </div>
+          </div>
+          <p class="text-sm leading-relaxed mb-6 text-white/85">JUSUO 直接向屋主承租，再行轉租。屋主每月固定收到租金，不論空置與否，JUSUO 自行承擔出租風險與日常管理責任。</p>
+          <div class="space-y-2 mb-6">
+            <p class="text-xs font-semibold mb-2">適合對象</p>
+            <p class="text-sm text-white/85">希望完全不用管物件的屋主、海外屋主、資產較多想批量委託的投資者</p>
+          </div>
+          <div class="grid grid-cols-2 gap-4 text-sm border-t border-white/20 pt-4">
+            <div>
+              <p class="font-semibold mb-2 text-white">✓ 優點</p>
+              <ul class="space-y-1 text-xs text-white/75">
+                <li>固定收入，不受空置影響</li>
+                <li>零煩惱，JUSUO 全責管理</li>
+                <li>長期合約，收益穩定</li>
+              </ul>
+            </div>
+            <div>
+              <p class="font-semibold mb-2 text-white/80">注意事項</p>
+              <ul class="space-y-1 text-xs text-white/75">
+                <li>租金略低於市場行情</li>
+                <li>需簽長期合約（通常 2 年）</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 合作代理 -->
+        <div id="partner-agency" class="rounded-2xl p-8 border border-border-col bg-white">
+          <div class="flex items-start gap-4 mb-6">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl min-w-12" style="background:var(--bg-light);">🤝</div>
+            <div>
+              <h3 class="text-xl font-bold mb-1" style="color:var(--text-dark);">合作代理</h3>
+              <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:#FFF3E0;color:#C9A96E;">適合夥伴</span>
+            </div>
+          </div>
+          <p class="text-sm leading-relaxed mb-6" style="color:var(--text-mid);">你有客戶或房源資源，轉介給 JUSUO 後由我們全程服務，成交後依合約比例拆分服務費。無需投入任何人力或資金。</p>
+          <div class="space-y-2 mb-6">
+            <p class="text-xs font-semibold mb-2" style="color:var(--text-dark);">適合對象</p>
+            <p class="text-sm" style="color:var(--text-mid);">房仲、代書、有社群資源的 KOL、對房地產有興趣的副業者</p>
+          </div>
+          <div class="grid grid-cols-2 gap-4 text-sm border-t border-border-col pt-4">
+            <div>
+              <p class="font-semibold mb-2" style="color:var(--brand-green);">✓ 優點</p>
+              <ul class="space-y-1 text-xs" style="color:var(--text-mid);">
+                <li>零投入成本純轉介</li>
+                <li>成交 30 天內結算傭金</li>
+                <li>可長期合作建立穩定收入</li>
+              </ul>
+            </div>
+            <div>
+              <p class="font-semibold mb-2" style="color:#D9534F;">注意事項</p>
+              <ul class="space-y-1 text-xs" style="color:var(--text-mid);">
+                <li>需簽合作備忘錄</li>
+                <li>傭金依案件類型有所不同</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 合作拆帳 -->
+        <div id="revenue-share" class="rounded-2xl p-8 border border-border-col bg-white">
+          <div class="flex items-start gap-4 mb-6">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl min-w-12" style="background:var(--bg-light);">💰</div>
+            <div>
+              <h3 class="text-xl font-bold mb-1" style="color:var(--text-dark);">合作拆帳</h3>
+              <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:#E8F4EA;color:#4A8A50;">投資型屋主</span>
+            </div>
+          </div>
+          <p class="text-sm leading-relaxed mb-6" style="color:var(--text-mid);">屋主提供空置物件，JUSUO 負責改造規劃、招租到管理，租金依約定比例分潤（通常屋主 6 ~ 7 成）。</p>
+          <div class="space-y-2 mb-6">
+            <p class="text-xs font-semibold mb-2" style="color:var(--text-dark);">適合對象</p>
+            <p class="text-sm" style="color:var(--text-mid);">有閒置物件卻不知如何處理的屋主、想提升租金報酬率的投資者</p>
+          </div>
+          <div class="grid grid-cols-2 gap-4 text-sm border-t border-border-col pt-4">
+            <div>
+              <p class="font-semibold mb-2" style="color:var(--brand-green);">✓ 優點</p>
+              <ul class="space-y-1 text-xs" style="color:var(--text-mid);">
+                <li>屋主無需自付改造費</li>
+                <li>空置風險由雙方共擔</li>
+                <li>JUSUO 有動力拚出租率</li>
+              </ul>
+            </div>
+            <div>
+              <p class="font-semibold mb-2" style="color:#D9534F;">注意事項</p>
+              <ul class="space-y-1 text-xs" style="color:var(--text-mid);">
+                <li>需長期合作（3 年以上）</li>
+                <li>改造方案需共同確認</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 比較表：JUSUO 代管 vs 自管 -->
+  <section class="py-20 bg-bg-light">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl font-bold" style="color:var(--text-dark);">JUSUO 代管 vs 房東自管</h2>
+        <p class="text-sm mt-3" style="color:var(--text-mid);">你真的省下時間了嗎？讓數字說話。</p>
+      </div>
+      <div class="overflow-x-auto rounded-2xl border border-border-col">
+        <table class="compare-table w-full">
+          <thead>
+            <tr>
+              <th class="text-left w-1/3" style="background:var(--text-dark);">階段</th>
+              <th style="background:var(--brand-brown);">JUSUO 代管</th>
+              <th style="background:var(--text-mid);">房東自管</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="text-left font-medium text-sm" style="color:var(--text-dark);padding-left:20px;">出租前：拍照刊登</td><td class="check">✓ 全包</td><td class="cross">✗ 自己來</td></tr>
+            <tr><td class="text-left font-medium text-sm" style="color:var(--text-dark);padding-left:20px;">出租前：帶看接待</td><td class="check">✓ 全包</td><td class="cross">✗ 自己來</td></tr>
+            <tr><td class="text-left font-medium text-sm" style="color:var(--text-dark);padding-left:20px;">出租前：房客審查</td><td class="check">✓ 專業審查</td><td class="cross">✗ 自己判斷</td></tr>
+            <tr><td class="text-left font-medium text-sm" style="color:var(--text-dark);padding-left:20px;">出租前：合約簽訂</td><td class="check">✓ 合規範本</td><td class="cross">✗ 自行處理</td></tr>
+            <tr><td class="text-left font-medium text-sm" style="color:var(--text-dark);padding-left:20px;">出租中：租金催收</td><td class="check">✓ 按時跟進</td><td class="cross">✗ 自己催</td></tr>
+            <tr><td class="text-left font-medium text-sm" style="color:var(--text-dark);padding-left:20px;">出租中：維修通報</td><td class="check">✓ 24小時回報</td><td class="cross">✗ 自己接電話</td></tr>
+            <tr><td class="text-left font-medium text-sm" style="color:var(--text-dark);padding-left:20px;">出租中：鄰里糾紛</td><td class="check">✓ 居中協調</td><td class="cross">✗ 自己處理</td></tr>
+            <tr><td class="text-left font-medium text-sm" style="color:var(--text-dark);padding-left:20px;">出租後：退租點交</td><td class="check">✓ 全包</td><td class="cross">✗ 自己來</td></tr>
+            <tr><td class="text-left font-medium text-sm" style="color:var(--text-dark);padding-left:20px;">出租後：重新刊登</td><td class="check">✓ 無縫接軌</td><td class="cross">✗ 重頭再來</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 委託流程 -->
+  <section class="py-20 bg-white">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="text-center mb-14">
+        <h2 class="text-3xl font-bold" style="color:var(--text-dark);">委託流程，簡單 6 步驟</h2>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-6 gap-4">
+        <div class="text-center">
+          <div class="w-14 h-14 rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-3" style="background:var(--brand-brown);">1</div>
+          <p class="text-xs font-semibold mb-1" style="color:var(--text-dark);">線上諮詢</p>
+          <p class="text-xs" style="color:var(--text-mid);">填寫需求表單</p>
+        </div>
+        <div class="text-center">
+          <div class="w-14 h-14 rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-3" style="background:var(--brand-brown);">2</div>
+          <p class="text-xs font-semibold mb-1" style="color:var(--text-dark);">現場評估</p>
+          <p class="text-xs" style="color:var(--text-mid);">專人到場勘查</p>
+        </div>
+        <div class="text-center">
+          <div class="w-14 h-14 rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-3" style="background:var(--brand-brown);">3</div>
+          <p class="text-xs font-semibold mb-1" style="color:var(--text-dark);">方案確認</p>
+          <p class="text-xs" style="color:var(--text-mid);">選定合作模式</p>
+        </div>
+        <div class="text-center">
+          <div class="w-14 h-14 rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-3" style="background:var(--brand-brown);">4</div>
+          <p class="text-xs font-semibold mb-1" style="color:var(--text-dark);">簽約</p>
+          <p class="text-xs" style="color:var(--text-mid);">合規委託合約</p>
+        </div>
+        <div class="text-center">
+          <div class="w-14 h-14 rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-3" style="background:var(--brand-brown);">5</div>
+          <p class="text-xs font-semibold mb-1" style="color:var(--text-dark);">準備出租</p>
+          <p class="text-xs" style="color:var(--text-mid);">拍照、刊登、帶看</p>
+        </div>
+        <div class="text-center">
+          <div class="w-14 h-14 rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-3" style="background:var(--brand-green);">6</div>
+          <p class="text-xs font-semibold mb-1" style="color:var(--text-dark);">開始代管</p>
+          <p class="text-xs" style="color:var(--text-mid);">屋主安心收租</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20 bg-bg-light">
+    <div class="max-w-3xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold" style="color:var(--text-dark);">常見問題</h2>
+      </div>
+      <div>
+        <div class="faq-item">
+          <button class="faq-question">
+            委託 JUSUO 管理，費用大概多少？
+            <div class="faq-icon"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg></div>
+          </button>
+          <div class="faq-answer">代租代管費用通常為月租金的 8%~12%，依服務內容和物件數量有所調整。包租代管則以雙方約定的固定租金為主，不另收管理費。詳細報價請聯絡我們免費諮詢。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            如果房客突然不繳租或破壞物件，怎麼辦？
+            <div class="faq-icon"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg></div>
+          </button>
+          <div class="faq-answer">JUSUO 在租前會做嚴格的房客審查，包括信用查核、收入證明、聯絡前房東等。入住後若發生違約情形，我們協助啟動法律程序，並代為溝通協調，最大程度保護屋主權益。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            我的物件有壁癌和老舊設備，可以委託嗎？
+            <div class="faq-icon"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg></div>
+          </button>
+          <div class="faq-answer">當然可以！JUSUO 同時提供空間改造服務。我們可以先協助評估物件狀況，提出改造方案與預算，改造後再進行委託管理，一條龍服務省時省事。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            委託合約可以中途解約嗎？
+            <div class="faq-icon"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg></div>
+          </button>
+          <div class="faq-answer">代租代管方案彈性較高，通常提前 30 天告知即可終止。包租代管因 JUSUO 已承擔空置風險，合約期限較長，中途解約需依合約條款處理違約金。詳情請在簽約前確認。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            JUSUO 服務哪些地區？
+            <div class="faq-icon"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg></div>
+          </button>
+          <div class="faq-answer">目前主要服務台北市（中山、大安、信義、松山、內湖、南港、士林、北投）及新北市（板橋、三重、中和、永和）。其他地區歡迎先聯絡詢問，我們視案件狀況彈性評估。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 諮詢表單 -->
+  <section class="py-20 bg-white">
+    <div class="max-w-2xl mx-auto px-4">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl font-bold mb-3" style="color:var(--text-dark);">立即預約免費諮詢</h2>
+        <p class="text-sm" style="color:var(--text-mid);">填寫以下資料，我們將於 24 小時內與您聯繫。</p>
+      </div>
+      <form class="space-y-4 bg-bg-light rounded-2xl p-8" data-formspree action="https://formspree.io/f/PLACEHOLDER" method="POST">
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium mb-2" style="color:var(--text-dark);">姓名 *</label>
+            <input type="text" name="name" required placeholder="王大明" class="w-full px-4 py-3 rounded-xl border border-border-col bg-white text-sm focus:outline-none" style="color:var(--text-dark);">
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-2" style="color:var(--text-dark);">聯絡電話 *</label>
+            <input type="tel" name="phone" required placeholder="0912-345-678" class="w-full px-4 py-3 rounded-xl border border-border-col bg-white text-sm focus:outline-none" style="color:var(--text-dark);">
+          </div>
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-2" style="color:var(--text-dark);">物件地址</label>
+          <input type="text" name="address" placeholder="台北市中山區○○路○○號" class="w-full px-4 py-3 rounded-xl border border-border-col bg-white text-sm focus:outline-none" style="color:var(--text-dark);">
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-2" style="color:var(--text-dark);">感興趣的方案</label>
+          <select name="plan" class="w-full px-4 py-3 rounded-xl border border-border-col bg-white text-sm focus:outline-none" style="color:var(--text-dark);">
+            <option value="">請選擇</option>
+            <option value="代租代管">代租代管</option>
+            <option value="包租代管">包租代管</option>
+            <option value="合作代理">合作代理</option>
+            <option value="合作拆帳">合作拆帳</option>
+            <option value="尚未決定">尚未決定，想先了解</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-2" style="color:var(--text-dark);">補充說明</label>
+          <textarea name="message" rows="4" placeholder="請簡述物件現況、目前困擾或任何想詢問的問題..." class="w-full px-4 py-3 rounded-xl border border-border-col bg-white text-sm focus:outline-none resize-none" style="color:var(--text-dark);"></textarea>
+        </div>
+        <button type="submit" class="w-full py-4 rounded-xl text-white font-semibold transition-all hover:opacity-90" style="background:var(--brand-brown);">送出諮詢申請</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-14">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+        <div><div class="flex items-center gap-2 mb-4"><div class="w-9 h-9 rounded-xl flex items-center justify-center text-white text-sm font-bold" style="background:var(--brand-brown);">居</div><span class="font-bold text-white text-lg">JUSUO 居所</span></div><p class="text-sm" style="color:rgba(255,255,255,0.55);">台灣租賃媒合・空間活化・老屋改造</p></div>
+        <div><h4 class="font-semibold text-white mb-4 text-sm">服務項目</h4><ul class="space-y-2.5"><li><a href="management.html" class="text-sm" style="color:rgba(255,255,255,0.55);">委託管理</a></li><li><a href="renovation.html" class="text-sm" style="color:rgba(255,255,255,0.55);">空間改造</a></li><li><a href="commercial.html" class="text-sm" style="color:rgba(255,255,255,0.55);">商空租借</a></li><li><a href="investment.html" class="text-sm" style="color:rgba(255,255,255,0.55);">投資買賣</a></li></ul></div>
+        <div><h4 class="font-semibold text-white mb-4 text-sm">學習資源</h4><ul class="space-y-2.5"><li><a href="blog.html?cat=landlord" class="text-sm" style="color:rgba(255,255,255,0.55);">房東必讀</a></li><li><a href="blog.html?cat=ai" class="text-sm" style="color:rgba(255,255,255,0.55);">AI 工作術</a></li><li><a href="properties.html" class="text-sm" style="color:rgba(255,255,255,0.55);">房源查詢</a></li></ul></div>
+        <div><h4 class="font-semibold text-white mb-4 text-sm">聯絡我們</h4><ul class="space-y-3"><li class="text-sm" style="color:rgba(255,255,255,0.55);">sean860619@gmail.com</li><li class="text-sm" style="color:rgba(255,255,255,0.55);">LINE: @jusuo666</li></ul></div>
+      </div>
+      <div class="pt-8 border-t border-white/10 text-center"><p class="text-xs" style="color:rgba(255,255,255,0.35);">© 2026 JUSUO 居所 版權所有</p></div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
