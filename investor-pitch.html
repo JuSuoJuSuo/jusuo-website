@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JUSUO 居所｜投資人簡報</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: "PingFang TC", "Noto Sans TC", sans-serif; background: #080808; overflow: hidden; }
+.slides { width: 100vw; height: 100vh; position: relative; }
+.slide { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 52px 80px; opacity: 0; transform: translateX(50px); transition: all 0.4s cubic-bezier(0.4,0,0.2,1); pointer-events: none; }
+.slide.active { opacity: 1; transform: translateX(0); pointer-events: all; }
+.slide.out { opacity: 0; transform: translateX(-50px); }
+
+.bg1 { background: radial-gradient(ellipse at 30% 40%, #0d1a0d 0%, #080808 70%); }
+.bg2 { background: radial-gradient(ellipse at 70% 30%, #1a0d0d 0%, #080808 70%); }
+.bg3 { background: radial-gradient(ellipse at 30% 70%, #0d0d1a 0%, #080808 70%); }
+.bg4 { background: radial-gradient(ellipse at 60% 60%, #1a1a0a 0%, #080808 70%); }
+
+.tag { font-size: 10px; letter-spacing: 0.2em; color: #6ee7b7; font-weight: 700; margin-bottom: 12px; text-transform: uppercase; }
+.h1 { font-size: 54px; font-weight: 800; color: #fff; line-height: 1.12; margin-bottom: 14px; }
+.h2 { font-size: 32px; font-weight: 700; color: #fff; line-height: 1.2; margin-bottom: 12px; }
+.sub { font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.7; }
+.accent { color: #6ee7b7; }
+.gold { color: #fbbf24; }
+.red { color: #f87171; }
+.w { width: 100%; max-width: 980px; }
+
+/* KPI Strip */
+.kpi-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; width: 100%; max-width: 900px; margin-top: 20px; }
+.kpi { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 20px; text-align: center; }
+.kpi.em { background: rgba(110,231,183,0.08); border-color: rgba(110,231,183,0.25); }
+.kpi-label { font-size: 11px; color: rgba(255,255,255,0.4); margin-bottom: 6px; letter-spacing: 0.05em; }
+.kpi-val { font-size: 26px; font-weight: 800; color: #fff; }
+.kpi-sub { font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 4px; }
+
+/* Problem / Solution */
+.ps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%; max-width: 900px; margin-top: 20px; }
+.ps-box { border-radius: 16px; padding: 24px; }
+.ps-problem { background: rgba(248,113,113,0.08); border: 1px solid rgba(248,113,113,0.2); }
+.ps-solution { background: rgba(110,231,183,0.08); border: 1px solid rgba(110,231,183,0.2); }
+.ps-head { font-size: 13px; font-weight: 700; margin-bottom: 14px; }
+.ps-item { display: flex; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.75); padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.ps-item:last-child { border-bottom: none; }
+
+/* Market */
+.market-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; width: 100%; max-width: 900px; margin-top: 20px; }
+.mkt { background: rgba(255,255,255,0.04); border-radius: 14px; padding: 22px; border: 1px solid rgba(255,255,255,0.07); position: relative; overflow: hidden; }
+.mkt::before { content: attr(data-label); position: absolute; top: 0; right: 0; background: rgba(110,231,183,0.15); color: #6ee7b7; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 0 12px 0 8px; }
+.mkt-title { font-size: 12px; color: rgba(255,255,255,0.4); margin-bottom: 8px; }
+.mkt-val { font-size: 32px; font-weight: 800; color: #6ee7b7; }
+.mkt-unit { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 4px; }
+.mkt-note { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 10px; line-height: 1.6; }
+
+/* Business model canvas light */
+.bmc { display: grid; grid-template-areas: "vp vp vp cr ch" "kp kp kp cr ch" "cs cs cs cs cs"; grid-template-columns: repeat(5, 1fr); grid-template-rows: 1fr 1fr auto; gap: 10px; width: 100%; max-width: 940px; margin-top: 16px; height: 300px; }
+.bmc-cell { border-radius: 10px; padding: 14px; border: 1px solid rgba(255,255,255,0.1); font-size: 12px; }
+.bmc-cell h5 { font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); margin-bottom: 6px; font-weight: 600; }
+.bmc-cell ul { list-style: none; }
+.bmc-cell li { color: rgba(255,255,255,0.75); padding: 2px 0; font-size: 12px; display: flex; gap: 6px; }
+.bmc-cell li::before { content: "·"; color: #6ee7b7; }
+.bmc-vp { grid-area: vp; background: rgba(110,231,183,0.1); border-color: rgba(110,231,183,0.25); }
+.bmc-cr { grid-area: cr; background: rgba(251,191,36,0.08); border-color: rgba(251,191,36,0.2); }
+.bmc-ch { grid-area: ch; background: rgba(147,197,253,0.07); border-color: rgba(147,197,253,0.18); }
+.bmc-kp { grid-area: kp; background: rgba(255,255,255,0.03); }
+.bmc-cs { grid-area: cs; background: rgba(248,113,113,0.07); border-color: rgba(248,113,113,0.18); display: flex; gap: 40px; }
+
+/* Revenue model */
+.rev-model { width: 100%; max-width: 900px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 18px; }
+.rev-stream { background: rgba(255,255,255,0.04); border-radius: 14px; padding: 20px; border: 1px solid rgba(255,255,255,0.08); }
+.rs-tag { font-size: 11px; color: #6ee7b7; letter-spacing: 0.1em; margin-bottom: 8px; font-weight: 600; }
+.rs-title { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 10px; }
+.rs-item { display: flex; justify-content: space-between; font-size: 13px; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.rs-item:last-child { border-bottom: none; }
+.rs-item-v { color: #fbbf24; font-weight: 600; }
+
+/* Unit economics */
+.ue-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; width: 100%; max-width: 900px; margin-top: 18px; }
+.ue-box { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 20px; }
+.ue-title { font-size: 12px; color: rgba(255,255,255,0.4); margin-bottom: 10px; }
+.ue-num { font-size: 30px; font-weight: 800; color: #6ee7b7; }
+.ue-unit { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 4px; }
+.ue-calc { font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 8px; line-height: 1.6; }
+
+/* Competitive moat */
+.moat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; width: 100%; max-width: 900px; margin-top: 16px; }
+.moat { background: rgba(255,255,255,0.04); border-radius: 14px; padding: 18px; display: flex; gap: 14px; border: 1px solid rgba(255,255,255,0.08); }
+.moat-icon { font-size: 28px; flex-shrink: 0; }
+.moat-title { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 5px; }
+.moat-desc { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+/* Roadmap */
+.roadmap { display: flex; gap: 20px; width: 100%; max-width: 900px; margin-top: 20px; }
+.rm { flex: 1; background: rgba(255,255,255,0.04); border-radius: 14px; padding: 20px; border: 1px solid rgba(255,255,255,0.08); position: relative; }
+.rm::before { content: attr(data-num); position: absolute; top: -14px; left: 50%; transform: translateX(-50%); width: 28px; height: 28px; background: #6ee7b7; color: #080808; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; }
+.rm-phase { font-size: 11px; color: #6ee7b7; letter-spacing: 0.1em; margin-bottom: 8px; font-weight: 600; }
+.rm-title { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+.rm-item { font-size: 12px; color: rgba(255,255,255,0.55); padding: 3px 0; display: flex; gap: 6px; }
+.rm-item::before { content: "→"; color: #6ee7b7; flex-shrink: 0; }
+
+/* Use of funds */
+.funds { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%; max-width: 900px; margin-top: 18px; }
+.fund-chart { display: flex; flex-direction: column; gap: 8px; }
+.fund-bar { display: flex; align-items: center; gap: 12px; }
+.fund-label { font-size: 13px; color: rgba(255,255,255,0.7); min-width: 140px; }
+.fund-track { flex: 1; background: rgba(255,255,255,0.08); border-radius: 4px; height: 10px; overflow: hidden; }
+.fund-fill { height: 100%; background: #6ee7b7; border-radius: 4px; }
+.fund-pct { font-size: 13px; font-weight: 600; color: #6ee7b7; min-width: 40px; text-align: right; }
+.fund-summary { background: rgba(110,231,183,0.08); border: 1px solid rgba(110,231,183,0.2); border-radius: 14px; padding: 24px; }
+.fs-title { font-size: 14px; font-weight: 700; color: #6ee7b7; margin-bottom: 12px; }
+.fs-item { display: flex; justify-content: space-between; font-size: 13px; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
+.fs-item:last-child { border-bottom: none; font-weight: 700; border-top: 1px solid rgba(110,231,183,0.3); padding-top: 10px; }
+
+/* Nav */
+.nav { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); display: flex; gap: 7px; align-items: center; z-index: 100; }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.2); cursor: pointer; transition: all 0.2s; }
+.dot.on { background: #6ee7b7; width: 20px; border-radius: 4px; }
+.nav-btn { background: rgba(255,255,255,0.07); border: none; color: rgba(255,255,255,0.6); padding: 7px 16px; border-radius: 8px; cursor: pointer; font-size: 12px; font-family: inherit; }
+.nav-btn:hover { background: rgba(255,255,255,0.13); color: #fff; }
+.pg { font-size: 11px; color: rgba(255,255,255,0.2); padding: 4px 8px; }
+.key-hint { position: fixed; top: 16px; right: 20px; font-size: 11px; color: rgba(255,255,255,0.12); }
+
+/* Chart */
+.chart-wrap { height: 220px; position: relative; }
+</style>
+</head>
+<body>
+<div class="key-hint">← → 換頁</div>
+<div class="slides">
+
+<!-- S1 封面 -->
+<div class="slide bg1 active" data-i="0">
+  <div class="w" style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;">
+    <div>
+      <div class="tag">Investor Deck｜2026</div>
+      <div class="h1">JUSUO<br><span class="accent">居所</span></div>
+      <div class="sub" style="margin-top:12px;">台灣包租代管 × 空間活化<br>以承攬網絡降低人力成本、以品牌溢價取勝的新型態代管平台</div>
+      <div style="margin-top:24px;font-size:13px;color:rgba(255,255,255,0.3);">人生非常有限公司｜統編 60793590</div>
+    </div>
+    <div class="kpi-strip" style="grid-template-columns:repeat(2,1fr);">
+      <div class="kpi em"><div class="kpi-label">目標市場規模</div><div class="kpi-val">100萬</div><div class="kpi-sub">台灣待活化租屋戶</div></div>
+      <div class="kpi"><div class="kpi-label">Phase 1 目標物件</div><div class="kpi-val">15</div><div class="kpi-sub">A+B 套餐，6 個月</div></div>
+      <div class="kpi"><div class="kpi-label">Phase 3 月收入</div><div class="kpi-val">16萬</div><div class="kpi-sub">28 個物件</div></div>
+      <div class="kpi em"><div class="kpi-label">小幫手分潤比</div><div class="kpi-val">~23%</div><div class="kpi-sub">按件計酬，無固定薪</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- S2 問題與機會 -->
+<div class="slide bg2" data-i="1">
+  <div class="w">
+    <div class="tag">Problem × Opportunity</div>
+    <div class="h2">台灣租房市場的<span class="red">痛點</span>與<span class="accent">機會</span></div>
+    <div class="ps-grid">
+      <div class="ps-box ps-problem">
+        <div class="ps-head" style="color:#f87171;">⚠️ 屋主的痛點</div>
+        <div class="ps-item"><span style="color:#f87171;flex-shrink:0">✗</span>老屋整修門檻高，空著浪費</div>
+        <div class="ps-item"><span style="color:#f87171;flex-shrink:0">✗</span>自管費時費力，收租、維修全要自己來</div>
+        <div class="ps-item"><span style="color:#f87171;flex-shrink:0">✗</span>台灣代管業者少、服務標準化程度低</div>
+        <div class="ps-item"><span style="color:#f87171;flex-shrink:0">✗</span>市場上缺乏透明報告與數位化服務</div>
+      </div>
+      <div class="ps-box ps-solution">
+        <div class="ps-head" style="color:#6ee7b7;">✅ 居所的解法</div>
+        <div class="ps-item"><span style="color:#6ee7b7;flex-shrink:0">✓</span>整修包租（C套餐）：居所出資，屋主固定收租</div>
+        <div class="ps-item"><span style="color:#6ee7b7;flex-shrink:0">✓</span>代管服務全包，月報透明，屋主完全解放</div>
+        <div class="ps-item"><span style="color:#6ee7b7;flex-shrink:0">✓</span>承攬小幫手網絡，降低人力成本至 23%</div>
+        <div class="ps-item"><span style="color:#6ee7b7;flex-shrink:0">✓</span>品牌化服務，溢價收費，與散戶房東做差異</div>
+      </div>
+    </div>
+    <div style="margin-top:16px;padding:14px 20px;background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.2);border-radius:10px;font-size:13px;color:rgba(255,255,255,0.65);">
+      📊 台灣 2024 年出租住宅約 <strong style="color:#fbbf24">200 萬戶</strong>，其中委託代管比例不到 <strong style="color:#fbbf24">5%</strong>，對比日本 30%+ 的代管滲透率，成長空間巨大。
+    </div>
+  </div>
+</div>
+
+<!-- S3 市場規模 -->
+<div class="slide bg3" data-i="2">
+  <div class="w">
+    <div class="tag">Market Size</div>
+    <div class="h2">台灣租屋代管<span class="accent">市場規模</span></div>
+    <div class="market-grid">
+      <div class="mkt" data-label="TAM">
+        <div class="mkt-title">總潛在市場 TAM</div>
+        <div class="mkt-val">200萬</div>
+        <div class="mkt-unit">台灣出租住宅戶數</div>
+        <div class="mkt-note">台灣全國出租房屋約 200 萬戶，月租平均 15,000–25,000 元</div>
+      </div>
+      <div class="mkt" data-label="SAM">
+        <div class="mkt-title">可服務市場 SAM</div>
+        <div class="mkt-val">20萬</div>
+        <div class="mkt-unit">台北市 + 大台北地區</div>
+        <div class="mkt-note">台北市出租住宅約 20 萬戶，是代管服務最成熟的市場</div>
+      </div>
+      <div class="mkt" data-label="SOM">
+        <div class="mkt-title">3 年目標 SOM</div>
+        <div class="mkt-val">500</div>
+        <div class="mkt-unit">委託代管物件數</div>
+        <div class="mkt-note">Phase 3 目標 28 物件；年複合成長 200%，可在 5 年達到 500 戶</div>
+      </div>
+    </div>
+    <div style="margin-top:18px;">
+      <div class="kpi-strip">
+        <div class="kpi"><div class="kpi-label">代管業滲透率（台灣）</div><div class="kpi-val" style="color:#f87171;">< 5%</div></div>
+        <div class="kpi"><div class="kpi-label">代管業滲透率（日本）</div><div class="kpi-val" style="color:#6ee7b7;">30%+</div></div>
+        <div class="kpi em"><div class="kpi-label">台灣年複合成長估計</div><div class="kpi-val">15%</div></div>
+        <div class="kpi"><div class="kpi-label">500 戶年管理費收入</div><div class="kpi-val">1.2億</div><div class="kpi-sub">月租 20K × 13% × 12</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S4 商業模式 -->
+<div class="slide bg4" data-i="3">
+  <div class="w">
+    <div class="tag">Business Model Canvas</div>
+    <div class="h2">商業模式<span class="accent">全景圖</span></div>
+    <div class="bmc">
+      <div class="bmc-cell bmc-vp">
+        <h5>核心價值主張</h5>
+        <ul>
+          <li>屋主：全包管理，每月透明匯款</li>
+          <li>房客：低仲介費，品質穩定租屋</li>
+          <li>小幫手：時間自由，按件計酬</li>
+        </ul>
+      </div>
+      <div class="bmc-cell bmc-cr">
+        <h5>客戶關係</h5>
+        <ul>
+          <li>月報告維繫屋主信任</li>
+          <li>LINE 即時服務房客</li>
+          <li>承攬合約管理小幫手</li>
+        </ul>
+      </div>
+      <div class="bmc-cell bmc-ch">
+        <h5>渠道</h5>
+        <ul>
+          <li>IG / 口碑獲客</li>
+          <li>小幫手引薦物件</li>
+          <li>591 / 網路招租</li>
+        </ul>
+      </div>
+      <div class="bmc-cell bmc-kp">
+        <h5>關鍵資源 + 活動</h5>
+        <ul>
+          <li>小幫手承攬網絡</li>
+          <li>標準化合約 SOP</li>
+          <li>物件管理系統</li>
+          <li>品牌（JUSUO 居所）</li>
+        </ul>
+      </div>
+      <div class="bmc-cell bmc-cs">
+        <div>
+          <h5>收入來源</h5>
+          <ul>
+            <li>管理費 10–13%</li>
+            <li>仲介費 0.5月</li>
+            <li>整修包租差價 35%</li>
+          </ul>
+        </div>
+        <div>
+          <h5>成本結構</h5>
+          <ul>
+            <li>小幫手分潤（~23%）</li>
+            <li>整修資本支出（C套餐）</li>
+            <li>固定營運成本 1.5萬/月</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S5 收入模型 + Unit Economics -->
+<div class="slide bg1" data-i="4">
+  <div class="w">
+    <div class="tag">Revenue Model + Unit Economics</div>
+    <div class="h2">收入來源與<span class="accent">單位經濟模型</span></div>
+    <div class="rev-model">
+      <div>
+        <div class="rev-stream">
+          <div class="rs-tag">Stream 1｜管理費（MRR）</div>
+          <div class="rs-title">月租金 × 費率</div>
+          <div class="rs-item"><span>A 帶租代管</span><span class="rs-item-v">10% / 月</span></div>
+          <div class="rs-item"><span>B 空屋代管</span><span class="rs-item-v">13% / 月</span></div>
+          <div class="rs-item"><span>特性</span><span style="color:rgba(255,255,255,0.5);">月固定 MRR，可預測</span></div>
+        </div>
+        <div class="rev-stream" style="margin-top:12px;">
+          <div class="rs-tag">Stream 2｜仲介費（一次性）</div>
+          <div class="rs-title">0.5 月租金 / 每次成交</div>
+          <div class="rs-item"><span>月成交 3 筆，月租 20K</span><span class="rs-item-v">NT$ 30,000</span></div>
+          <div class="rs-item"><span>特性</span><span style="color:rgba(255,255,255,0.5);">波動性收入，與帶看效率正相關</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="ue-grid" style="grid-template-columns:1fr;gap:10px;">
+          <div class="ue-box">
+            <div class="ue-title">單物件（B套餐）月毛利</div>
+            <div class="ue-num" style="font-size:24px;">NT$ 1,800</div>
+            <div class="ue-calc">月租 20K × 13% = 2,600<br>- 小幫手費（~400）- 雜支（~400）= 1,800</div>
+          </div>
+          <div class="ue-box">
+            <div class="ue-title">損益兩平物件數</div>
+            <div class="ue-num" style="font-size:24px;">9 個物件</div>
+            <div class="ue-calc">固定成本 NT$ 15,000 ÷ 單物件淨利 1,700 ≈ 9 物件</div>
+          </div>
+          <div class="ue-box">
+            <div class="ue-title">15 個物件月淨利</div>
+            <div class="ue-num" style="font-size:24px;">NT$ 12,000+</div>
+            <div class="ue-calc">固定成本攤薄後，每新增物件邊際利潤 > 85%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S6 競爭護城河 -->
+<div class="slide bg2" data-i="5">
+  <div class="w">
+    <div class="tag">Competitive Moat</div>
+    <div class="h2">居所的<span class="accent">護城河</span></div>
+    <div class="moat-grid">
+      <div class="moat">
+        <div class="moat-icon">🕸️</div>
+        <div>
+          <div class="moat-title">承攬小幫手網絡</div>
+          <div class="moat-desc">按件計酬的彈性網絡，人力成本低於傳統仲介（無固定薪資），且具有自我擴張機制（推薦制）</div>
+        </div>
+      </div>
+      <div class="moat">
+        <div class="moat-icon">📋</div>
+        <div>
+          <div class="moat-title">標準化三套餐服務</div>
+          <div class="moat-desc">清楚費率 + 合約保護，降低屋主決策門檻；三套餐覆蓋不同物件狀況，競爭對手難以複製完整體系</div>
+        </div>
+      </div>
+      <div class="moat">
+        <div class="moat-icon">🏷️</div>
+        <div>
+          <div class="moat-title">JUSUO 居所品牌</div>
+          <div class="moat-desc">以 IG 內容行銷和空間美學為品牌基礎，鎖定願意付溢價的屋主和高品質房客群體</div>
+        </div>
+      </div>
+      <div class="moat">
+        <div class="moat-icon">🔄</div>
+        <div>
+          <div class="moat-title">多年期合約鎖定</div>
+          <div class="moat-desc">B 套餐 2 年、C 套餐 3 年合約，形成穩定 MRR 基礎，降低流失率，提高 LTV</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:16px;padding:14px 20px;background:rgba(110,231,183,0.06);border:1px solid rgba(110,231,183,0.15);border-radius:10px;font-size:13px;color:rgba(255,255,255,0.6);">
+      競爭對手：傳統房仲（高人力成本）、591 平台（不提供管理服務）、大型代管業（服務標準化但缺乏個人化、品牌感弱）
+    </div>
+  </div>
+</div>
+
+<!-- S7 三階段 Roadmap -->
+<div class="slide bg3" data-i="6">
+  <div class="w">
+    <div class="tag">Growth Roadmap</div>
+    <div class="h2">三階段<span class="accent">規模化路徑</span></div>
+    <div class="roadmap">
+      <div class="rm" data-num="1">
+        <div class="rm-phase">Phase 1｜0–6 個月</div>
+        <div class="rm-title">打通流程，培訓網絡</div>
+        <div style="margin-bottom:6px;font-size:12px;color:#6ee7b7;">目標：A×3 + B×5，月收 45K</div>
+        <div class="rm-item">建立帶看、收租、報告 SOP</div>
+        <div class="rm-item">培訓 5+ 名穩定小幫手</div>
+        <div class="rm-item">驗證 B 套餐完整閉環</div>
+        <div class="rm-item">月淨利 15,000–20,000 元</div>
+      </div>
+      <div class="rm" data-num="2">
+        <div class="rm-phase">Phase 2｜6–18 個月</div>
+        <div class="rm-title">擴量，C套餐試點</div>
+        <div style="margin-bottom:6px;font-size:12px;color:#6ee7b7;">目標：A×5 + B×10 + C×2，月收 90K</div>
+        <div class="rm-item">達到損益兩平（9 物件）</div>
+        <div class="rm-item">C 套餐 1–2 物件試點</div>
+        <div class="rm-item">評估申請代管業執照</div>
+        <div class="rm-item">月淨利 30,000–40,000 元</div>
+      </div>
+      <div class="rm" data-num="3">
+        <div class="rm-phase">Phase 3｜18 個月+</div>
+        <div class="rm-title">品牌化，擴增服務</div>
+        <div style="margin-bottom:6px;font-size:12px;color:#6ee7b7;">目標：A×8 + B×15 + C×5，月收 160K</div>
+        <div class="rm-item">代管業執照取得</div>
+        <div class="rm-item">招聘專職行政人員</div>
+        <div class="rm-item">數位課程 / 自媒體延伸</div>
+        <div class="rm-item">月淨利 60,000–80,000 元</div>
+      </div>
+    </div>
+    <div style="margin-top:14px;">
+      <div class="kpi-strip">
+        <div class="kpi"><div class="kpi-label">Phase 1 月淨利</div><div class="kpi-val">1.5–2 萬</div></div>
+        <div class="kpi"><div class="kpi-label">Phase 2 月淨利</div><div class="kpi-val">3–4 萬</div></div>
+        <div class="kpi em"><div class="kpi-label">Phase 3 月淨利</div><div class="kpi-val">6–8 萬</div></div>
+        <div class="kpi"><div class="kpi-label">損益兩平點</div><div class="kpi-val">9 個物件</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S8 資金用途 -->
+<div class="slide bg4" data-i="7">
+  <div class="w">
+    <div class="tag">Use of Funds</div>
+    <div class="h2">資金用途<span class="accent">規劃</span></div>
+    <div class="funds">
+      <div class="fund-chart">
+        <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:12px;">種子輪資金用途分配（目標 100 萬）</div>
+        <div class="fund-bar"><div class="fund-label">C套餐整修資本</div><div class="fund-track"><div class="fund-fill" style="width:50%"></div></div><div class="fund-pct">50%</div></div>
+        <div class="fund-bar"><div class="fund-label">行銷 + 品牌建設</div><div class="fund-track"><div class="fund-fill" style="width:20%"></div></div><div class="fund-pct">20%</div></div>
+        <div class="fund-bar"><div class="fund-label">數位工具 + 系統</div><div class="fund-track"><div class="fund-fill" style="width:15%"></div></div><div class="fund-pct">15%</div></div>
+        <div class="fund-bar"><div class="fund-label">法務 + 合規</div><div class="fund-track"><div class="fund-fill" style="width:10%"></div></div><div class="fund-pct">10%</div></div>
+        <div class="fund-bar"><div class="fund-label">備用 / 流動</div><div class="fund-track"><div class="fund-fill" style="width:5%"></div></div><div class="fund-pct">5%</div></div>
+      </div>
+      <div class="fund-summary">
+        <div class="fs-title">為什麼現在值得投資？</div>
+        <div class="fs-item"><span>市場空白明確</span><span style="color:#6ee7b7;">代管滲透率 < 5%</span></div>
+        <div class="fs-item"><span>商業模式驗證中</span><span style="color:#6ee7b7;">合約 + 流程已建立</span></div>
+        <div class="fs-item"><span>低人力成本護城河</span><span style="color:#6ee7b7;">承攬網絡已啟動</span></div>
+        <div class="fs-item"><span>創辦人</span><span style="color:#6ee7b7;">Sean 劉冠炫</span></div>
+        <div class="fs-item"><span>種子輪目標</span><span style="color:#fbbf24;font-size:18px;">NT$ 100 萬</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S9 創辦人 -->
+<div class="slide bg1" data-i="8">
+  <div class="w" style="display:grid;grid-template-columns:1fr 2fr;gap:48px;align-items:center;">
+    <div style="text-align:center;">
+      <div style="width:120px;height:120px;border-radius:50%;background:rgba(110,231,183,0.15);border:3px solid rgba(110,231,183,0.4);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:48px;">👤</div>
+      <div style="font-size:20px;font-weight:700;color:#fff;margin-bottom:4px;">劉冠炫 Sean</div>
+      <div style="font-size:13px;color:#6ee7b7;">創辦人｜人生非常有限公司</div>
+      <div style="margin-top:16px;font-size:13px;color:rgba(255,255,255,0.4);">IG：@ju_suo666</div>
+    </div>
+    <div>
+      <div class="tag">Founder</div>
+      <div class="h2">超級個體<span class="accent">實踐者</span></div>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-top:16px;">
+        <div style="display:flex;gap:14px;background:rgba(255,255,255,0.04);border-radius:12px;padding:16px;border:1px solid rgba(255,255,255,0.08);">
+          <span style="font-size:22px;flex-shrink:0;">🏠</span>
+          <div><div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;">台灣租賃媒合 × 空間活化實踐者</div><div style="font-size:13px;color:rgba(255,255,255,0.5);">JUSUO 居所品牌創辦人，深耕大台北租屋市場</div></div>
+        </div>
+        <div style="display:flex;gap:14px;background:rgba(255,255,255,0.04);border-radius:12px;padding:16px;border:1px solid rgba(255,255,255,0.08);">
+          <span style="font-size:22px;flex-shrink:0;">📱</span>
+          <div><div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;">數位內容 × AI 工具創作者</div><div style="font-size:13px;color:rgba(255,255,255,0.5);">經營 JuSuo 週報、AI 相關線上課程，具備數位行銷和內容創作能力</div></div>
+        </div>
+        <div style="display:flex;gap:14px;background:rgba(110,231,183,0.08);border-radius:12px;padding:16px;border:1px solid rgba(110,231,183,0.2);">
+          <span style="font-size:22px;flex-shrink:0;">🚀</span>
+          <div><div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;">邊做邊建立系統的執行派</div><div style="font-size:13px;color:rgba(255,255,255,0.6);">合約體系、分潤機制、小幫手網絡均已建立，正在驗證可規模化的商業模式</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S10 結語 -->
+<div class="slide bg2" data-i="9">
+  <div class="w" style="text-align:center;">
+    <div class="tag">Let's Build Together</div>
+    <div class="h1" style="font-size:50px;">居所想做的，<br>是讓<span class="accent">每一間空房子</span><br>都活起來</div>
+    <div class="sub" style="max-width:540px;margin:20px auto 0;font-size:15px;">
+      台灣有 100 萬間待活化的出租物件，卻不到 5% 被專業代管。<br>
+      居所的目標是用品牌 + 系統 + 網絡，成為屋主最信任的管家。
+    </div>
+    <div style="margin-top:36px;display:flex;gap:40px;justify-content:center;align-items:center;">
+      <div style="text-align:center;"><div style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:4px;">聯繫創辦人</div><div style="font-size:18px;font-weight:700;color:#6ee7b7;">@ju_suo666</div></div>
+      <div style="width:1px;height:40px;background:rgba(255,255,255,0.15);"></div>
+      <div style="text-align:center;"><div style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:4px;">公司</div><div style="font-size:18px;font-weight:700;color:#fff;">人生非常有限公司</div></div>
+      <div style="width:1px;height:40px;background:rgba(255,255,255,0.15);"></div>
+      <div style="text-align:center;"><div style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:4px;">Email</div><div style="font-size:18px;font-weight:700;color:#fff;">sean860619@gmail.com</div></div>
+    </div>
+  </div>
+</div>
+
+</div>
+<div class="nav">
+  <button class="nav-btn" onclick="go(-1)">←</button>
+  <div id="dots"></div>
+  <span class="pg" id="pg">1/10</span>
+  <button class="nav-btn" onclick="go(1)">→</button>
+</div>
+<script>
+let cur=0; const slides=document.querySelectorAll('.slide'); const n=slides.length;
+function buildDots(){const d=document.getElementById('dots');d.innerHTML='';for(let i=0;i<n;i++){const dot=document.createElement('div');dot.className='dot'+(i===cur?' on':'');dot.onclick=()=>goTo(i);d.appendChild(dot);}document.getElementById('pg').textContent=(cur+1)+'/'+n;}
+function goTo(i){slides[cur].classList.remove('active');slides[cur].classList.add('out');const p=cur;cur=Math.max(0,Math.min(i,n-1));setTimeout(()=>slides[p].classList.remove('out'),400);slides[cur].classList.add('active');buildDots();}
+function go(d){goTo(cur+d);}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown')go(1);if(e.key==='ArrowLeft'||e.key==='ArrowUp')go(-1);});
+buildDots();
+</script>
+</body>
+</html>

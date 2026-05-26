@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JUSUO 居所｜屋主說明書</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: "PingFang TC", "Noto Sans TC", sans-serif; background: #0a0a0a; overflow: hidden; color: #fff; }
+
+/* ──────── Slide System ──────── */
+.deck { width: 100vw; height: 100vh; position: relative; }
+.slide { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 52px 88px; opacity: 0; transform: translateX(60px); transition: opacity .45s ease, transform .45s cubic-bezier(.4,0,.2,1); pointer-events: none; }
+.slide.active { opacity: 1; transform: translateX(0); pointer-events: all; }
+.slide.prev  { opacity: 0; transform: translateX(-60px); }
+
+/* Backgrounds */
+.s-black  { background: #0a0a0a; }
+.s-warm   { background: radial-gradient(ellipse at 20% 50%, #1c1000 0%, #0a0a0a 65%); }
+.s-red    { background: radial-gradient(ellipse at 80% 30%, #1a0804 0%, #0a0a0a 65%); }
+.s-gold   { background: radial-gradient(ellipse at 50% 50%, #1a1400 0%, #0a0a0a 60%); }
+.s-green  { background: radial-gradient(ellipse at 30% 60%, #001408 0%, #0a0a0a 65%); }
+.s-deep   { background: radial-gradient(ellipse at 70% 40%, #0d0a18 0%, #0a0a0a 65%); }
+
+/* ──────── Typography ──────── */
+.tag { font-size: 10px; letter-spacing: .22em; color: #d4a030; font-weight: 700; margin-bottom: 14px; text-transform: uppercase; }
+.h-giant { font-size: 64px; font-weight: 900; line-height: 1.08; }
+.h-big   { font-size: 44px; font-weight: 800; line-height: 1.15; }
+.h-mid   { font-size: 32px; font-weight: 700; line-height: 1.2; }
+.lead    { font-size: 17px; color: rgba(255,255,255,.55); line-height: 1.75; }
+.acc     { color: #d4a030; }
+.g       { color: #4caf50; }
+.r       { color: #ef5350; }
+.w-wrap  { width: 100%; max-width: 1000px; }
+
+/* ──────── SLIDE 1 — 封面 ──────── */
+.cover-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 64px; align-items: center; }
+.cover-stat { display: flex; flex-direction: column; gap: 16px; }
+.cs-box { background: rgba(212,160,48,.08); border: 1px solid rgba(212,160,48,.25); border-radius: 14px; padding: 20px 24px; }
+.cs-label { font-size: 11px; color: rgba(255,255,255,.4); letter-spacing: .06em; margin-bottom: 6px; }
+.cs-val { font-size: 28px; font-weight: 800; }
+.cs-note { font-size: 12px; color: rgba(255,255,255,.35); margin-top: 4px; }
+
+/* ──────── SLIDE 2 — 震撼對比 ──────── */
+.ba-wrap { display: grid; grid-template-columns: 1fr 60px 1fr; align-items: center; gap: 0; width: 100%; max-width: 960px; margin-top: 20px; }
+.ba-side { border-radius: 18px; padding: 28px 30px; }
+.ba-before { background: rgba(239,83,80,.07); border: 1.5px solid rgba(239,83,80,.25); }
+.ba-after  { background: rgba(76,175,80,.07); border: 1.5px solid rgba(76,175,80,.25); }
+.ba-label  { font-size: 11px; font-weight: 700; letter-spacing: .1em; margin-bottom: 14px; }
+.ba-rent   { font-size: 56px; font-weight: 900; line-height: 1; }
+.ba-unit   { font-size: 16px; font-weight: 400; }
+.ba-desc   { font-size: 13px; color: rgba(255,255,255,.5); margin-top: 8px; line-height: 1.7; }
+.ba-items  { margin-top: 16px; display: flex; flex-direction: column; gap: 6px; }
+.ba-item   { font-size: 13px; color: rgba(255,255,255,.75); display: flex; align-items: center; gap: 8px; }
+.ba-arrow  { text-align: center; }
+.ba-arrow-icon { font-size: 32px; color: #d4a030; }
+.ba-arrow-text { font-size: 11px; color: rgba(255,255,255,.3); margin-top: 6px; line-height: 1.5; }
+
+/* ──────── SLIDE 3 — 長期試算 ──────── */
+.calc-layout { display: grid; grid-template-columns: 320px 1fr; gap: 28px; width: 100%; max-width: 1000px; margin-top: 16px; align-items: start; }
+.calc-panel { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.09); border-radius: 16px; padding: 22px; }
+.cp-title { font-size: 12px; color: rgba(255,255,255,.4); letter-spacing: .08em; margin-bottom: 16px; }
+.inp-row { margin-bottom: 12px; }
+.inp-row label { display: block; font-size: 12px; color: rgba(255,255,255,.55); margin-bottom: 5px; }
+.inp-row input { width: 100%; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); border-radius: 8px; padding: 9px 13px; color: #fff; font-size: 15px; font-family: inherit; }
+.inp-row input:focus { outline: none; border-color: #d4a030; }
+.result-table { margin-top: 14px; }
+.rt-row { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,.06); font-size: 13px; }
+.rt-row:last-child { border-bottom: none; border-top: 1px solid rgba(212,160,48,.3); padding-top: 10px; font-weight: 700; font-size: 15px; }
+.rt-v { color: #d4a030; }
+.chart-box { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08); border-radius: 16px; padding: 20px; }
+.chart-box h4 { font-size: 13px; color: rgba(255,255,255,.5); margin-bottom: 14px; }
+.ch-wrap { position: relative; height: 260px; }
+
+/* ──────── SLIDE 4 — 10年數字衝擊 ──────── */
+.impact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; width: 100%; max-width: 960px; margin-top: 20px; }
+.imp { border-radius: 16px; padding: 26px; text-align: center; }
+.imp-do-nothing { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); }
+.imp-self-reno   { background: rgba(239,83,80,.07); border: 1px solid rgba(239,83,80,.2); }
+.imp-jusuo       { background: rgba(212,160,48,.1); border: 2px solid rgba(212,160,48,.4); }
+.imp-label { font-size: 11px; letter-spacing: .1em; color: rgba(255,255,255,.4); margin-bottom: 10px; }
+.imp-title { font-size: 15px; font-weight: 700; margin-bottom: 14px; }
+.imp-num { font-size: 44px; font-weight: 900; line-height: 1; margin-bottom: 4px; }
+.imp-unit { font-size: 14px; color: rgba(255,255,255,.5); }
+.imp-detail { font-size: 12px; color: rgba(255,255,255,.4); line-height: 1.7; margin-top: 12px; }
+.imp-tag { display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-top: 8px; }
+
+/* ──────── SLIDE 5 — 居所做什麼 ──────── */
+.service-flow { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; width: 100%; max-width: 960px; margin-top: 20px; position: relative; }
+.service-flow::before { content:''; position: absolute; top: 32px; left: 8%; right: 8%; height: 2px; background: rgba(212,160,48,.2); }
+.sf { text-align: center; position: relative; z-index: 1; }
+.sf-icon { width: 64px; height: 64px; border-radius: 50%; background: rgba(212,160,48,.12); border: 2px solid rgba(212,160,48,.3); margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; font-size: 26px; }
+.sf-title { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+.sf-desc { font-size: 11px; color: rgba(255,255,255,.45); line-height: 1.5; }
+.highlight-row { background: rgba(212,160,48,.08); border: 1px solid rgba(212,160,48,.2); border-radius: 12px; padding: 14px 20px; margin-top: 18px; width: 100%; max-width: 960px; display: flex; gap: 40px; justify-content: center; font-size: 13px; color: rgba(255,255,255,.65); }
+.highlight-row span { color: #d4a030; font-weight: 700; }
+
+/* ──────── SLIDE 6 — 三套餐 ──────── */
+.pkg-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; width: 100%; max-width: 960px; margin-top: 18px; }
+.pkg { border-radius: 18px; padding: 26px; border: 2px solid; position: relative; overflow: hidden; }
+.pkg::before { content: attr(data-badge); position: absolute; top: 0; right: 0; padding: 5px 14px; font-size: 11px; font-weight: 700; border-radius: 0 16px 0 8px; }
+.pkg-a { background: rgba(150,150,150,.07); border-color: rgba(150,150,150,.25); }
+.pkg-a::before { background: rgba(150,150,150,.2); color: #aaa; }
+.pkg-b { background: rgba(212,160,48,.1); border-color: rgba(212,160,48,.45); }
+.pkg-b::before { background: rgba(212,160,48,.25); color: #d4a030; }
+.pkg-c { background: rgba(76,175,80,.08); border-color: rgba(76,175,80,.35); }
+.pkg-c::before { background: rgba(76,175,80,.2); color: #4caf50; }
+.pkg-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+.pkg-subtitle { font-size: 12px; color: rgba(255,255,255,.45); margin-bottom: 14px; }
+.pkg-rate { font-size: 40px; font-weight: 900; line-height: 1; margin-bottom: 4px; }
+.pkg-rate-note { font-size: 12px; color: rgba(255,255,255,.45); margin-bottom: 14px; }
+.pkg-li { font-size: 13px; color: rgba(255,255,255,.75); padding: 4px 0; display: flex; gap: 8px; }
+.pkg-li::before { content: "→"; color: #d4a030; flex-shrink: 0; }
+.pkg-example { margin-top: 14px; padding: 12px; background: rgba(0,0,0,.2); border-radius: 8px; font-size: 12px; color: rgba(255,255,255,.5); line-height: 1.6; }
+
+/* ──────── SLIDE 7 — 信任 ──────── */
+.trust-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; width: 100%; max-width: 920px; margin-top: 18px; }
+.trust { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 14px; padding: 20px 22px; display: flex; gap: 14px; }
+.ti { font-size: 28px; flex-shrink: 0; }
+.tt { font-size: 15px; font-weight: 700; margin-bottom: 5px; }
+.td { font-size: 13px; color: rgba(255,255,255,.5); line-height: 1.65; }
+.q-block { width: 100%; max-width: 920px; margin-top: 14px; padding: 16px 22px; background: rgba(212,160,48,.07); border-left: 4px solid #d4a030; border-radius: 0 10px 10px 0; font-size: 14px; color: rgba(255,255,255,.7); line-height: 1.8; }
+.q-block strong { color: #d4a030; }
+
+/* ──────── SLIDE 8 — CTA ──────── */
+.cta-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; width: 100%; max-width: 960px; }
+.cta-left .big-promise { font-size: 22px; color: rgba(255,255,255,.7); line-height: 1.8; margin-top: 20px; }
+.cta-left .big-promise span { color: #d4a030; font-weight: 700; }
+.cta-right { display: flex; flex-direction: column; gap: 14px; }
+.cta-box { border-radius: 14px; padding: 20px 24px; }
+.cta-main { background: #d4a030; color: #0a0a0a; }
+.cta-main .cta-title { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+.cta-main .cta-desc { font-size: 13px; color: rgba(0,0,0,.6); }
+.cta-sub { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); }
+.cta-sub .cta-label { font-size: 11px; color: rgba(255,255,255,.4); margin-bottom: 5px; }
+.cta-sub .cta-val { font-size: 18px; font-weight: 700; }
+
+/* ──────── Nav ──────── */
+.nav { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; align-items: center; z-index: 200; }
+.dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.2); cursor: pointer; transition: all .2s; }
+.dot.on { background: #d4a030; width: 24px; border-radius: 4px; }
+.nbtn { background: rgba(255,255,255,.07); border: none; color: rgba(255,255,255,.6); padding: 8px 20px; border-radius: 8px; cursor: pointer; font-size: 12px; font-family: inherit; transition: all .2s; }
+.nbtn:hover { background: rgba(255,255,255,.14); color: #fff; }
+.pgnum { font-size: 11px; color: rgba(255,255,255,.2); padding: 4px 10px; }
+.kh { position: fixed; top: 18px; right: 22px; font-size: 11px; color: rgba(255,255,255,.12); }
+</style>
+</head>
+<body>
+<div class="kh">← → 換頁</div>
+<div class="deck">
+
+<!-- ══════════════════════════════════════
+     S1  封面 — 一句話讓屋主停下來
+════════════════════════════════════════ -->
+<div class="slide s-warm active">
+  <div class="w-wrap cover-grid">
+    <div>
+      <div class="tag">JUSUO 居所｜屋主說明書</div>
+      <div class="h-giant">你的房子<br>可以租<br><span class="acc">兩倍多</span></div>
+      <div class="lead" style="margin-top:18px;max-width:400px;">整修前租 10,000，整修後租 25,000<br>你一毛錢不用出，居所全包</div>
+    </div>
+    <div class="cover-stat">
+      <div class="cs-box">
+        <div class="cs-label">整修後月租金提升</div>
+        <div class="cs-val acc">+ 150%</div>
+        <div class="cs-note">10,000 → 25,000（市場實際案例）</div>
+      </div>
+      <div class="cs-box">
+        <div class="cs-label">10 年額外收入差距</div>
+        <div class="cs-val" style="color:#4caf50;">+NT$ 195 萬</div>
+        <div class="cs-note">比繼續用舊租金出租多賺的錢</div>
+      </div>
+      <div class="cs-box" style="background:rgba(255,255,255,.04);">
+        <div class="cs-label">屋主需要出的整修費</div>
+        <div class="cs-val">NT$ 0</div>
+        <div class="cs-note">居所墊付，從差價中回收</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     S2  震撼對比 — Before / After
+════════════════════════════════════════ -->
+<div class="slide s-black">
+  <div class="w-wrap">
+    <div class="tag">真實的差距</div>
+    <div class="h-mid">同一間房子，<span class="acc">整修前後的落差</span></div>
+    <div class="ba-wrap">
+      <div class="ba-side ba-before">
+        <div class="ba-label" style="color:#ef5350;">整修前｜現在的你</div>
+        <div class="ba-rent" style="color:#ef5350;">10,000 <span class="ba-unit">元</span></div>
+        <div class="ba-desc">老舊格局、壁癌滲水、設備殘破<br>難找租客，低價求人租</div>
+        <div class="ba-items">
+          <div class="ba-item"><span style="color:#ef5350;">✗</span>空窗期一等就三個月</div>
+          <div class="ba-item"><span style="color:#ef5350;">✗</span>租客嫌棄、殺價、入住後麻煩多</div>
+          <div class="ba-item"><span style="color:#ef5350;">✗</span>10 年收入 120 萬（空窗還扣）</div>
+          <div class="ba-item"><span style="color:#ef5350;">✗</span>資產持續折舊，越來越不值錢</div>
+        </div>
+      </div>
+      <div class="ba-arrow">
+        <div class="ba-arrow-icon">→</div>
+        <div class="ba-arrow-text">交給<br>居所<br>整修</div>
+      </div>
+      <div class="ba-side ba-after">
+        <div class="ba-label" style="color:#4caf50;">整修後｜居所幫你做到的</div>
+        <div class="ba-rent" style="color:#4caf50;">25,000 <span class="ba-unit">元</span></div>
+        <div class="ba-desc">煥然一新的設計感空間<br>搶手物件，比市場快 2 倍找到租客</div>
+        <div class="ba-items">
+          <div class="ba-item"><span style="color:#4caf50;">✓</span>屋主每月固定收 16,250 元（65%）</div>
+          <div class="ba-item"><span style="color:#4caf50;">✓</span>比整修前多收 <strong style="color:#d4a030;">62.5%</strong>，完全不用管理</div>
+          <div class="ba-item"><span style="color:#4caf50;">✓</span>10 年收入 195 萬，多 75 萬</div>
+          <div class="ba-item"><span style="color:#4caf50;">✓</span>整修後資產增值，房子更值錢</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:14px;text-align:center;font-size:13px;color:rgba(255,255,255,.35);">
+      ＊以月租 10,000 舊屋整修後提升至 25,000 為例｜整修費由居所墊付，屋主 NT$0 出資
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     S3  互動試算 — 你的房子算多少
+════════════════════════════════════════ -->
+<div class="slide s-gold">
+  <div class="w-wrap">
+    <div class="tag">算算你的</div>
+    <div class="h-mid">填入你的物件，<span class="acc">看看 10 年差多少</span></div>
+    <div class="calc-layout">
+      <div>
+        <div class="calc-panel">
+          <div class="cp-title">你的物件條件</div>
+          <div class="inp-row">
+            <label>現在租金（或空著）</label>
+            <input type="number" id="c_now" value="10000" oninput="calc()">
+          </div>
+          <div class="inp-row">
+            <label>整修後預估市場租金</label>
+            <input type="number" id="c_after" value="25000" oninput="calc()">
+          </div>
+          <div class="inp-row">
+            <label>預估整修費（居所出）</label>
+            <input type="number" id="c_reno" value="500000" oninput="calc()">
+          </div>
+          <div class="result-table" id="calc_result"></div>
+        </div>
+        <div style="margin-top:12px;padding:13px 16px;background:rgba(212,160,48,.08);border-left:3px solid #d4a030;font-size:12px;color:rgba(255,255,255,.55);line-height:1.75;border-radius:0 8px 8px 0;">
+          屋主每月收整修後租金的 <strong style="color:#d4a030;">65%</strong><br>
+          居所負責整修、招租、管理、維修全包<br>
+          空窗期照給屋主，風險居所自承
+        </div>
+      </div>
+      <div class="chart-box">
+        <h4>📊 10 年累積收入比較（元）</h4>
+        <div class="ch-wrap">
+          <canvas id="tenYearChart"></canvas>
+        </div>
+        <div style="margin-top:12px;display:flex;gap:20px;justify-content:center;font-size:12px;color:rgba(255,255,255,.45);">
+          <span style="display:flex;align-items:center;gap:6px;"><span style="width:12px;height:12px;background:#ef5350;border-radius:2px;display:inline-block;"></span>繼續舊租金</span>
+          <span style="display:flex;align-items:center;gap:6px;"><span style="width:12px;height:12px;background:#d4a030;border-radius:2px;display:inline-block;"></span>居所整修包租</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     S4  10 年衝擊數字
+════════════════════════════════════════ -->
+<div class="slide s-deep">
+  <div class="w-wrap" style="text-align:center;">
+    <div class="tag">10 年的選擇</div>
+    <div class="h-mid">一個決定，<span class="acc">10 年的差距</span></div>
+    <div style="font-size:15px;color:rgba(255,255,255,.5);margin:8px 0 20px;">以月租 10,000 → 整修後 25,000 為例</div>
+    <div class="impact-grid">
+      <div class="imp imp-do-nothing">
+        <div class="imp-label">選項 A</div>
+        <div class="imp-title">繼續放著，什麼都不做</div>
+        <div class="imp-num" style="color:rgba(255,255,255,.35);">NT$0</div>
+        <div class="imp-unit">月租金收入</div>
+        <div class="imp-detail">
+          空著就是機會成本<br>
+          10 年累積損失：<strong style="color:#ef5350;">NT$ 120 萬</strong>（比有租金還少）<br>
+          房子持續老舊，越來越難租
+        </div>
+        <div class="imp-tag" style="background:rgba(239,83,80,.15);color:#ef5350;">最差選擇</div>
+      </div>
+      <div class="imp imp-self-reno">
+        <div class="imp-label">選項 B</div>
+        <div class="imp-title">自己整修，自己管理</div>
+        <div class="imp-num" style="color:#ef5350;">25,000</div>
+        <div class="imp-unit">元 / 月（自己收全額）</div>
+        <div class="imp-detail">
+          自出整修費 50 萬<br>
+          自己找租客、收租、維修、處理糾紛<br>
+          10 年淨收（扣整修）：<strong>NT$ 250 萬</strong><br>
+          時間成本：<strong style="color:#ef5350;">無數個夜晚</strong>
+        </div>
+        <div class="imp-tag" style="background:rgba(239,83,80,.12);color:#ef5350;">費時費力</div>
+      </div>
+      <div class="imp imp-jusuo">
+        <div class="imp-label">選項 C</div>
+        <div class="imp-title">交給居所，躺著收</div>
+        <div class="imp-num acc">16,250</div>
+        <div class="imp-unit">元 / 月（你固定收到手）</div>
+        <div class="imp-detail">
+          整修費 <strong style="color:#4caf50;">NT$ 0</strong>，居所全出<br>
+          管理、維修、空窗 <strong style="color:#4caf50;">全部居所負責</strong><br>
+          10 年累積：<strong style="color:#d4a030;">NT$ 195 萬</strong><br>
+          時間成本：<strong style="color:#4caf50;">零</strong>
+        </div>
+        <div class="imp-tag" style="background:rgba(212,160,48,.2);color:#d4a030;">最輕鬆選擇</div>
+      </div>
+    </div>
+    <div style="margin-top:18px;padding:14px 24px;background:rgba(212,160,48,.07);border:1px solid rgba(212,160,48,.2);border-radius:10px;font-size:14px;color:rgba(255,255,255,.65);">
+      💡 居所方案雖然每月少拿 8,750 元，但<strong style="color:#d4a030;">省下 50 萬整修費 + 10 年的心力</strong>，把機會成本算進去，C 選項對多數屋主最划算。
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     S5  居所幫你做的事
+════════════════════════════════════════ -->
+<div class="slide s-black">
+  <div class="w-wrap" style="display:flex;flex-direction:column;align-items:center;">
+    <div class="tag">我們幫你做什麼</div>
+    <div class="h-mid" style="text-align:center;">從整修到收租，<span class="acc">每一步都居所來</span></div>
+    <div class="service-flow">
+      <div class="sf"><div class="sf-icon">🔍</div><div class="sf-title">物件評估</div><div class="sf-desc">免費勘查<br>分析潛力租金</div></div>
+      <div class="sf"><div class="sf-icon">🔨</div><div class="sf-title">規劃整修</div><div class="sf-desc">設計改造<br>提升物件品質</div></div>
+      <div class="sf"><div class="sf-icon">📣</div><div class="sf-title">招租宣傳</div><div class="sf-desc">多平台刊登<br>篩選優質房客</div></div>
+      <div class="sf"><div class="sf-icon">🤝</div><div class="sf-title">帶看媒合</div><div class="sf-desc">小幫手帶看<br>確認租客品質</div></div>
+      <div class="sf"><div class="sf-icon">📋</div><div class="sf-title">合約簽署</div><div class="sf-desc">標準合約<br>雙方保護</div></div>
+      <div class="sf"><div class="sf-icon">💰</div><div class="sf-title">管理收租</div><div class="sf-desc">代收代付<br>月報透明</div></div>
+    </div>
+    <div class="highlight-row">
+      <span>整修費 <span>居所全出</span></span>
+      <span>空窗風險 <span>居所自承</span></span>
+      <span>維修協調 <span>24 小時處理</span></span>
+      <span>糾紛處理 <span>居所出面</span></span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     S6  三套餐 — 不同情況都能選
+════════════════════════════════════════ -->
+<div class="slide s-warm">
+  <div class="w-wrap">
+    <div class="tag">三套方案</div>
+    <div class="h-mid">不管你的房子是什麼狀況，<span class="acc">都有適合的選擇</span></div>
+    <div class="pkg-row">
+      <div class="pkg pkg-a" data-badge="入門方案">
+        <div class="pkg-name">A｜帶租代管</div>
+        <div class="pkg-subtitle">你已有租客，只要外包管理</div>
+        <div class="pkg-rate" style="color:#aaa;">10%</div>
+        <div class="pkg-rate-note">月租金 × 10%｜合約 1 年</div>
+        <div class="pkg-li">收租、維修、月報全包</div>
+        <div class="pkg-li">立即開始，不需整修</div>
+        <div class="pkg-li">解放管理時間</div>
+        <div class="pkg-example">月租 20,000 → 管費 2,000<br>你每月淨拿 18,000 元</div>
+      </div>
+      <div class="pkg pkg-b" data-badge="⭐ 主力方案">
+        <div class="pkg-name">B｜空屋代管</div>
+        <div class="pkg-subtitle">空屋招租，居所全程負責</div>
+        <div class="pkg-rate acc">13%</div>
+        <div class="pkg-rate-note">月租金 × 13%｜合約 2 年</div>
+        <div class="pkg-li">居所負責招租帶看</div>
+        <div class="pkg-li">空窗期不收管理費</div>
+        <div class="pkg-li">高品質租客篩選</div>
+        <div class="pkg-example">月租 20,000 → 管費 2,600<br>你每月淨拿 17,400 元</div>
+      </div>
+      <div class="pkg pkg-c" data-badge="整修升級">
+        <div class="pkg-name">C｜整修包租</div>
+        <div class="pkg-subtitle">舊屋整修，旱澇保收</div>
+        <div class="pkg-rate" style="color:#4caf50;">65%</div>
+        <div class="pkg-rate-note">市場租金 × 65%｜合約 3 年</div>
+        <div class="pkg-li">居所出資整修，你 NT$0</div>
+        <div class="pkg-li">每月固定入帳，空窗不影響</div>
+        <div class="pkg-li">10,000 舊租 → 最高收 16,250</div>
+        <div class="pkg-example" style="border-top:1px solid rgba(76,175,80,.2);">整修前 10K → 整修後市租 25K<br>你收 65% = <strong style="color:#4caf50;">16,250 元</strong>（比原本多 62.5%）</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     S7  信任保障
+════════════════════════════════════════ -->
+<div class="slide s-black">
+  <div class="w-wrap">
+    <div class="tag">你的疑慮</div>
+    <div class="h-mid">你最想問的，<span class="acc">這裡都回答</span></div>
+    <div class="trust-row">
+      <div class="trust">
+        <div class="ti">📄</div>
+        <div>
+          <div class="tt">合約都寫清楚，不靠信任</div>
+          <div class="td">費率、整修範圍、空窗處理方式、解約條件全部白紙黑字，不是口頭承諾，出問題有合約保護</div>
+        </div>
+      </div>
+      <div class="trust">
+        <div class="ti">📊</div>
+        <div>
+          <div class="tt">每月收月報，帳目完全透明</div>
+          <div class="td">租金收入、維修紀錄、帶看狀況每月寄給你，你可以隨時查，不用盲目信任居所</div>
+        </div>
+      </div>
+      <div class="trust">
+        <div class="ti">🔧</div>
+        <div>
+          <div class="tt">整修完，你的資產升值了</div>
+          <div class="td">合約結束後，你拿回的房子比交出去時更值錢，整修費相當於幫你的資產加值，還是你的</div>
+        </div>
+      </div>
+      <div class="trust">
+        <div class="ti">🚪</div>
+        <div>
+          <div class="tt">不滿意可以離開，有保護</div>
+          <div class="td">提前 30 天書面通知即可解約，已承諾報酬照給，C 套餐整修費依合約協商處理，不會被套牢</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-block">
+      「整修後如果居所倒了怎麼辦？」→ 合約有明確條款：整修費用明細、所有權歸屬、解約後費用計算都有保護。<strong>房子始終是你的，居所只是管理方。</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     S8  CTA
+════════════════════════════════════════ -->
+<div class="slide s-warm">
+  <div class="w-wrap">
+    <div class="cta-layout">
+      <div class="cta-left">
+        <div class="tag">現在開始</div>
+        <div class="h-big">把你的老房子<br>交給<span class="acc">居所</span></div>
+        <div class="big-promise">
+          我們做的事只有一件：<br>
+          <span>讓你的房子</span>租出該有的價格，<br>
+          <span>然後你什麼都不用管</span>
+        </div>
+      </div>
+      <div class="cta-right">
+        <div class="cta-box cta-main">
+          <div class="cta-title">📞 免費物件評估</div>
+          <div class="cta-desc">現場勘查 + 3 天內提供租金預估與方案建議</div>
+        </div>
+        <div class="cta-box cta-sub">
+          <div class="cta-label">IG 私訊</div>
+          <div class="cta-val acc">@ju_suo666</div>
+          <div style="font-size:13px;color:rgba(255,255,255,.4);margin-top:4px;">私訊「屋主評估」即可</div>
+        </div>
+        <div class="cta-box cta-sub">
+          <div class="cta-label">Email</div>
+          <div class="cta-val" style="font-size:16px;">sean860619@gmail.com</div>
+        </div>
+        <div style="padding:14px 16px;background:rgba(76,175,80,.07);border:1px solid rgba(76,175,80,.2);border-radius:10px;font-size:13px;color:rgba(255,255,255,.6);line-height:1.7;">
+          ✅ 免費評估，不喜歡不用簽約<br>✅ 評估後 3 天給你試算報告<br>✅ 現在聯繫，本月可開始
+        </div>
+        <div style="font-size:12px;color:rgba(255,255,255,.2);text-align:center;">人生非常有限公司｜統編 60793590</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /deck -->
+
+<!-- ──────── Nav ──────── -->
+<div class="nav">
+  <button class="nbtn" onclick="go(-1)">←</button>
+  <div id="dots"></div>
+  <span class="pgnum" id="pgn">1 / 8</span>
+  <button class="nbtn" onclick="go(1)">→</button>
+</div>
+
+<script>
+// ── Slide engine ──
+let cur = 0;
+const slides = document.querySelectorAll('.slide');
+const N = slides.length;
+
+function buildDots() {
+  const d = document.getElementById('dots');
+  d.innerHTML = '';
+  for (let i = 0; i < N; i++) {
+    const el = document.createElement('div');
+    el.className = 'dot' + (i === cur ? ' on' : '');
+    el.onclick = () => goTo(i);
+    d.appendChild(el);
+  }
+  document.getElementById('pgn').textContent = (cur + 1) + ' / ' + N;
+}
+
+function goTo(n) {
+  slides[cur].classList.remove('active');
+  slides[cur].classList.add('prev');
+  const old = cur;
+  cur = Math.max(0, Math.min(n, N - 1));
+  setTimeout(() => slides[old].classList.remove('prev'), 450);
+  slides[cur].classList.add('active');
+  buildDots();
+}
+
+function go(d) { goTo(cur + d); }
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   go(-1);
+});
+
+buildDots();
+
+// ── Calculator ──
+let ch = null;
+
+function fmt(n) { return Math.round(n).toLocaleString('zh-TW'); }
+
+function calc() {
+  const now    = +document.getElementById('c_now').value    || 0;
+  const after  = +document.getElementById('c_after').value  || 0;
+  const reno   = +document.getElementById('c_reno').value   || 0;
+
+  const ownerNow    = now;
+  const ownerAfter  = after * 0.65;
+  const ownerDiff   = ownerAfter - ownerNow;
+  const renoBreak   = ownerDiff > 0 ? Math.ceil(reno / ownerDiff) : '—';
+  const yr10old     = ownerNow  * 12 * 10;
+  const yr10new     = ownerAfter * 12 * 10;
+  const yr10diff    = yr10new - yr10old;
+
+  document.getElementById('calc_result').innerHTML = `
+    <div class="rt-row"><span style="color:rgba(255,255,255,.5)">現在每月收入</span><span class="rt-v">NT$ ${fmt(ownerNow)}</span></div>
+    <div class="rt-row"><span style="color:rgba(255,255,255,.5)">整修後你固定收（65%）</span><span style="color:#4caf50;font-weight:700;">NT$ ${fmt(ownerAfter)}</span></div>
+    <div class="rt-row"><span style="color:rgba(255,255,255,.5)">每月多賺</span><span style="color:${ownerDiff>=0?'#4caf50':'#ef5350'};font-weight:700;">NT$ ${fmt(ownerDiff)}</span></div>
+    <div class="rt-row"><span style="color:rgba(255,255,255,.5)">整修費（居所出）</span><span style="color:#4caf50;font-weight:600;">NT$ 0</span></div>
+    <div class="rt-row"><span>10 年多收</span><span class="rt-v">NT$ ${fmt(yr10diff)}</span></div>
+  `;
+
+  // Chart
+  const labels = ['1年','2年','3年','4年','5年','6年','7年','8年','9年','10年'];
+  const oldData = labels.map((_,i) => ownerNow * 12 * (i + 1));
+  const newData = labels.map((_,i) => ownerAfter * 12 * (i + 1));
+
+  if (ch) ch.destroy();
+  const ctx = document.getElementById('tenYearChart').getContext('2d');
+  ch = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: '繼續用現有租金',
+          data: oldData,
+          borderColor: '#ef5350',
+          backgroundColor: 'rgba(239,83,80,.1)',
+          fill: true, tension: 0.3, pointRadius: 3
+        },
+        {
+          label: '居所整修包租',
+          data: newData,
+          borderColor: '#d4a030',
+          backgroundColor: 'rgba(212,160,48,.12)',
+          fill: true, tension: 0.3, pointRadius: 3
+        }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        y: {
+          grid: { color: 'rgba(255,255,255,.06)' },
+          ticks: { color: 'rgba(255,255,255,.4)', callback: v => 'NT$' + Math.round(v / 10000) + '萬' }
+        },
+        x: { grid: { color: 'rgba(255,255,255,.06)' }, ticks: { color: 'rgba(255,255,255,.4)' } }
+      },
+      plugins: { legend: { display: false } }
+    }
+  });
+}
+
+calc();
+</script>
+</body>
+</html>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JUSUO 居所｜小幫手招募說明</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: "PingFang TC", "Noto Sans TC", sans-serif; background: #0e0e0e; overflow: hidden; }
+.slides { width: 100vw; height: 100vh; position: relative; }
+.slide { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 56px 80px; opacity: 0; transform: translateY(40px); transition: all 0.45s cubic-bezier(0.4,0,0.2,1); pointer-events: none; }
+.slide.active { opacity: 1; transform: translateY(0); pointer-events: all; }
+.slide.out { opacity: 0; transform: translateY(-40px); }
+
+.bg-dark { background: linear-gradient(145deg, #0e0e0e, #1a1a1a); }
+.bg-teal { background: linear-gradient(145deg, #001a15, #002a20); }
+.bg-warm { background: linear-gradient(145deg, #1a0f00, #2a1800); }
+.bg-blue { background: linear-gradient(145deg, #060e1a, #0d1a2a); }
+.bg-purple { background: linear-gradient(145deg, #0e0814, #1a1028); }
+
+.tag { font-size: 11px; letter-spacing: 0.18em; color: #40c4aa; font-weight: 600; margin-bottom: 14px; text-transform: uppercase; }
+.h1 { font-size: 52px; font-weight: 800; color: #fff; line-height: 1.15; margin-bottom: 16px; }
+.h2 { font-size: 34px; font-weight: 700; color: #fff; line-height: 1.2; margin-bottom: 14px; }
+.sub { font-size: 16px; color: rgba(255,255,255,0.55); line-height: 1.7; }
+.accent { color: #40c4aa; }
+.gold { color: #d4a030; }
+.w { width: 100%; max-width: 940px; }
+
+/* Who grid */
+.who-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; width: 100%; max-width: 900px; margin-top: 20px; }
+.who-card { background: rgba(64,196,170,0.08); border: 1px solid rgba(64,196,170,0.2); border-radius: 14px; padding: 20px; text-align: center; }
+.who-icon { font-size: 36px; margin-bottom: 10px; }
+.who-title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.who-desc { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+/* Income tiers */
+.tier-wrap { width: 100%; max-width: 860px; margin-top: 16px; display: flex; flex-direction: column; gap: 10px; }
+.tier { display: flex; align-items: center; gap: 18px; background: rgba(255,255,255,0.05); border-radius: 12px; padding: 16px 20px; border: 1px solid rgba(255,255,255,0.08); }
+.tier.active-t { background: rgba(64,196,170,0.1); border-color: rgba(64,196,170,0.3); }
+.tier-label { font-size: 13px; color: rgba(255,255,255,0.7); min-width: 160px; }
+.tier-bar-wrap { flex: 1; background: rgba(255,255,255,0.08); border-radius: 4px; height: 8px; overflow: hidden; }
+.tier-bar { height: 100%; background: linear-gradient(90deg, #40c4aa, #26a890); border-radius: 4px; }
+.tier-val { font-size: 16px; font-weight: 700; color: #40c4aa; min-width: 100px; text-align: right; }
+
+/* Reward table */
+.reward-wrap { width: 100%; max-width: 860px; margin-top: 16px; }
+.reward-section { margin-bottom: 14px; }
+.reward-title { font-size: 11px; letter-spacing: 0.1em; color: #40c4aa; font-weight: 600; margin-bottom: 8px; }
+.reward-grid-inner { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.reward-box { background: rgba(255,255,255,0.05); border-radius: 10px; padding: 14px 16px; border: 1px solid rgba(255,255,255,0.07); }
+.reward-box.hot { background: rgba(64,196,170,0.1); border-color: rgba(64,196,170,0.25); }
+.reward-name { font-size: 12px; color: rgba(255,255,255,0.6); margin-bottom: 5px; }
+.reward-amt { font-size: 20px; font-weight: 700; color: #fff; }
+.reward-note { font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 3px; }
+
+/* Work steps */
+.work-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; width: 100%; max-width: 900px; margin-top: 20px; position: relative; }
+.work-steps::before { content:""; position:absolute; top:24px; left:10%; right:10%; height:2px; background:rgba(255,255,255,0.1); z-index:0; }
+.ws { text-align: center; position: relative; z-index: 1; }
+.ws-dot { width: 48px; height: 48px; border-radius: 50%; background: rgba(64,196,170,0.15); border: 2px solid rgba(64,196,170,0.4); display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; font-size: 20px; }
+.ws-title { font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 5px; }
+.ws-desc { font-size: 11px; color: rgba(255,255,255,0.45); line-height: 1.5; }
+
+/* Calc */
+.calc-block { width: 100%; max-width: 800px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 16px; }
+.calc-inputs { display: flex; flex-direction: column; gap: 12px; }
+.inp-row { display: flex; justify-content: space-between; align-items: center; }
+.inp-row label { font-size: 13px; color: rgba(255,255,255,0.6); }
+.inp-row input { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 8px 14px; color: #fff; font-size: 15px; font-family: inherit; width: 100px; text-align: right; }
+.inp-row input:focus { outline: none; border-color: #40c4aa; }
+.calc-output { display: flex; flex-direction: column; gap: 8px; }
+.co-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.07); font-size: 13px; }
+.co-row:last-child { border-bottom: none; border-top: 1px solid rgba(64,196,170,0.3); padding-top: 12px; font-weight: 700; font-size: 16px; }
+.co-val { color: #40c4aa; font-weight: 600; }
+
+/* FAQ / concern */
+.concern-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; width: 100%; max-width: 860px; margin-top: 16px; }
+.con-item { background: rgba(255,255,255,0.05); border-radius: 12px; padding: 18px 20px; }
+.con-q { font-size: 13px; color: rgba(255,255,255,0.85); font-weight: 600; margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px; }
+.con-q::before { content: "Q"; background: rgba(64,196,170,0.2); color: #40c4aa; font-size: 11px; font-weight: 800; padding: 2px 7px; border-radius: 4px; flex-shrink: 0; margin-top: 1px; }
+.con-a { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.7; }
+
+/* Join steps */
+.join-steps { display: flex; flex-direction: column; gap: 14px; width: 100%; max-width: 680px; margin-top: 20px; }
+.js { display: flex; gap: 16px; align-items: flex-start; }
+.js-num { width: 36px; height: 36px; border-radius: 50%; background: #40c4aa; color: #0e0e0e; font-weight: 800; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.js-title { font-size: 15px; font-weight: 700; color: #fff; }
+.js-desc { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 3px; }
+
+/* Nav */
+.nav { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; align-items: center; z-index: 100; }
+.dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.25); cursor: pointer; transition: all 0.2s; }
+.dot.on { background: #40c4aa; width: 22px; border-radius: 4px; }
+.nav-btn { background: rgba(255,255,255,0.08); border: none; color: rgba(255,255,255,0.7); padding: 8px 18px; border-radius: 8px; cursor: pointer; font-size: 12px; font-family: inherit; }
+.nav-btn:hover { background: rgba(255,255,255,0.15); color: #fff; }
+.pg { font-size: 11px; color: rgba(255,255,255,0.25); padding: 4px 10px; }
+.key-hint { position: fixed; top: 18px; right: 22px; font-size: 11px; color: rgba(255,255,255,0.15); }
+</style>
+</head>
+<body>
+<div class="key-hint">← → 換頁</div>
+<div class="slides">
+
+<!-- S1 封面 -->
+<div class="slide bg-dark active" data-i="0">
+  <div class="w" style="text-align:center;">
+    <div class="tag">居所小幫手招募</div>
+    <div class="h1">時間自由，<br><span class="accent">帶看就有錢</span></div>
+    <div class="sub" style="max-width:480px;margin:20px auto 0;">不用固定上班，不用業績壓力<br>出門帶客戶看房，完成回報就領錢</div>
+    <div style="margin-top:36px;font-size:13px;color:rgba(255,255,255,0.2);">← → 鍵翻頁｜共 8 頁</div>
+  </div>
+</div>
+
+<!-- S2 適合誰 -->
+<div class="slide bg-teal" data-i="1">
+  <div class="w">
+    <div class="tag">你適合嗎？</div>
+    <div class="h2">這些人<span class="accent">最適合</span>當居所小幫手</div>
+    <div class="who-grid">
+      <div class="who-card">
+        <div class="who-icon">🎓</div>
+        <div class="who-title">學生 / 在校生</div>
+        <div class="who-desc">白天有空，課餘時間帶看，時薪比打工高又彈性</div>
+      </div>
+      <div class="who-card">
+        <div class="who-icon">🏡</div>
+        <div class="who-title">全職媽媽 / 家管</div>
+        <div class="who-desc">孩子上學後有幾小時空檔，帶看輕鬆外出兼賺錢</div>
+      </div>
+      <div class="who-card">
+        <div class="who-icon">🚗</div>
+        <div class="who-title">外送 / 接案工作者</div>
+        <div class="who-desc">已習慣靈活接案，帶看單可以搭配既有行程</div>
+      </div>
+      <div class="who-card">
+        <div class="who-icon">💼</div>
+        <div class="who-title">上班族想多一份收入</div>
+        <div class="who-desc">假日或下班後帶看，每月多 3,000–8,000 元</div>
+      </div>
+      <div class="who-card">
+        <div class="who-icon">🏘️</div>
+        <div class="who-title">熟悉特定區域的在地人</div>
+        <div class="who-desc">對社區、交通、學區了解深，帶看說明更有說服力</div>
+      </div>
+      <div class="who-card">
+        <div class="who-icon">🔍</div>
+        <div class="who-title">想了解房產市場的人</div>
+        <div class="who-desc">邊賺錢邊學市場，建立房產知識和人脈</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S3 賺多少 -->
+<div class="slide bg-dark" data-i="2">
+  <div class="w" style="display:flex;flex-direction:column;align-items:center;">
+    <div class="tag">收入試算</div>
+    <div class="h2" style="text-align:center;">不同力度，<span class="accent">能賺多少？</span></div>
+    <div class="tier-wrap">
+      <div class="tier">
+        <div class="tier-label">🔹 輕度（5組+1成交）</div>
+        <div class="tier-bar-wrap"><div class="tier-bar" style="width:18%"></div></div>
+        <div class="tier-val">≈ 2,100 元</div>
+      </div>
+      <div class="tier">
+        <div class="tier-label">🔸 普通（10組+2成交）</div>
+        <div class="tier-bar-wrap"><div class="tier-bar" style="width:34%"></div></div>
+        <div class="tier-val">≈ 4,005 元</div>
+      </div>
+      <div class="tier active-t">
+        <div class="tier-label">⭐ 積極（20組+3成交）</div>
+        <div class="tier-bar-wrap"><div class="tier-bar" style="width:53%"></div></div>
+        <div class="tier-val">≈ 6,255 元</div>
+      </div>
+      <div class="tier">
+        <div class="tier-label">🚀 高效（30組+5成交）</div>
+        <div class="tier-bar-wrap"><div class="tier-bar" style="width:100%"></div></div>
+        <div class="tier-val">≈ 11,805 元</div>
+      </div>
+    </div>
+    <div style="margin-top:14px;font-size:13px;color:rgba(255,255,255,0.35);text-align:center;">
+      每組帶看約 1–2 小時，時薪換算約 NT$ 150–400 元，視成交率而定
+    </div>
+  </div>
+</div>
+
+<!-- S4 分潤明細 -->
+<div class="slide bg-blue" data-i="3">
+  <div class="w">
+    <div class="tag">完整分潤制度</div>
+    <div class="h2">每個動作<span class="accent">都有報酬</span></div>
+    <div class="reward-wrap">
+      <div class="reward-section">
+        <div class="reward-title">帶看費（遞階制）</div>
+        <div class="reward-grid-inner">
+          <div class="reward-box hot">
+            <div class="reward-name">第 1–2 組</div>
+            <div class="reward-amt">200 元<span style="font-size:14px"> / 組</span></div>
+            <div class="reward-note">出門就有基本保障</div>
+          </div>
+          <div class="reward-box">
+            <div class="reward-name">第 3–8 組</div>
+            <div class="reward-amt">45 元<span style="font-size:14px"> / 組</span></div>
+            <div class="reward-note">中量帶看</div>
+          </div>
+          <div class="reward-box">
+            <div class="reward-name">第 9 組起</div>
+            <div class="reward-amt">65 元<span style="font-size:14px"> / 組</span></div>
+            <div class="reward-note">效率高者更多</div>
+          </div>
+        </div>
+      </div>
+      <div class="reward-section">
+        <div class="reward-title">獎金制度</div>
+        <div class="reward-grid-inner">
+          <div class="reward-box hot">
+            <div class="reward-name">✅ 媒合成交</div>
+            <div class="reward-amt">1,100 元</div>
+            <div class="reward-note">每筆固定</div>
+          </div>
+          <div class="reward-box">
+            <div class="reward-name">🏘️ 房源開發上架</div>
+            <div class="reward-amt">500 元</div>
+            <div class="reward-note">有效物件</div>
+          </div>
+          <div class="reward-box">
+            <div class="reward-name">🏘️ 房源開發成交</div>
+            <div class="reward-amt">1,000 元</div>
+            <div class="reward-note">額外加給</div>
+          </div>
+          <div class="reward-box">
+            <div class="reward-name">👁️ 預看補貼</div>
+            <div class="reward-amt">50 元</div>
+            <div class="reward-note">甲方指定物件</div>
+          </div>
+          <div class="reward-box">
+            <div class="reward-name">🤝 推薦新小幫手帶看</div>
+            <div class="reward-amt">500 元</div>
+            <div class="reward-note">被推薦人首次帶看</div>
+          </div>
+          <div class="reward-box hot">
+            <div class="reward-name">🏠 引薦包租物件</div>
+            <div class="reward-amt">3,000 元</div>
+            <div class="reward-note">簽訂整修包租合約</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S5 互動試算 -->
+<div class="slide bg-dark" data-i="4">
+  <div class="w" style="display:flex;flex-direction:column;align-items:center;">
+    <div class="tag">自己算算看</div>
+    <div class="h2" style="text-align:center;">輸入你的計劃，<span class="accent">看你可以賺多少</span></div>
+    <div class="calc-block">
+      <div class="calc-inputs">
+        <div class="inp-row"><label>每月帶看組數</label><input id="c_v" type="number" value="15" oninput="calcH()"></div>
+        <div class="inp-row"><label>每月媒合成交筆數</label><input id="c_d" type="number" value="2" oninput="calcH()"></div>
+        <div class="inp-row"><label>每月開發有效房源數</label><input id="c_s" type="number" value="1" oninput="calcH()"></div>
+        <div class="inp-row"><label>推薦新小幫手數</label><input id="c_r" type="number" value="0" oninput="calcH()"></div>
+      </div>
+      <div class="calc-output" id="h_out"></div>
+    </div>
+  </div>
+</div>
+
+<!-- S6 工作流程 -->
+<div class="slide bg-purple" data-i="5">
+  <div class="w" style="display:flex;flex-direction:column;align-items:center;">
+    <div class="tag">工作流程</div>
+    <div class="h2" style="text-align:center;">每次帶看只要<span class="accent"> 5 步</span></div>
+    <div class="work-steps">
+      <div class="ws">
+        <div class="ws-dot">📱</div>
+        <div class="ws-title">接到帶看任務</div>
+        <div class="ws-desc">居所指派時間、地點、客戶基本資訊</div>
+      </div>
+      <div class="ws">
+        <div class="ws-dot">📍</div>
+        <div class="ws-title">到場帶看</div>
+        <div class="ws-desc">帶客戶進屋、說明物件狀況、回答問題</div>
+      </div>
+      <div class="ws">
+        <div class="ws-dot">📸</div>
+        <div class="ws-title">拍照記錄</div>
+        <div class="ws-desc">現場照片 + 客戶反應記錄</div>
+      </div>
+      <div class="ws">
+        <div class="ws-dot">📝</div>
+        <div class="ws-title">24 小時內回報</div>
+        <div class="ws-desc">LINE 或表單填寫帶看結果</div>
+      </div>
+      <div class="ws">
+        <div class="ws-dot">💰</div>
+        <div class="ws-title">月底入帳</div>
+        <div class="ws-desc">每月 25 日結算，5 日發放</div>
+      </div>
+    </div>
+    <div style="margin-top:24px;padding:14px 24px;background:rgba(64,196,170,0.1);border:1px solid rgba(64,196,170,0.2);border-radius:10px;font-size:13px;color:rgba(255,255,255,0.7);max-width:700px;text-align:center;">
+      沒有強制業績，沒有底薪，不喜歡就不接單。你掌控自己的時間。
+    </div>
+  </div>
+</div>
+
+<!-- S7 常見疑問 -->
+<div class="slide bg-dark" data-i="6">
+  <div class="w">
+    <div class="tag">常見疑問</div>
+    <div class="h2">你最想問的，<span class="accent">這裡都有</span></div>
+    <div class="concern-grid">
+      <div class="con-item">
+        <div class="con-q">需要有房仲執照嗎？</div>
+        <div class="con-a">不需要。你是居所的承攬小幫手，非仲介，執行帶看、回報等協助工作，不代表居所對外簽約或議價。</div>
+      </div>
+      <div class="con-item">
+        <div class="con-q">帶看前有培訓嗎？</div>
+        <div class="con-a">有。居所提供帶看話術、客戶引導方式、注意事項等說明，第一次帶看前會有教學說明。</div>
+      </div>
+      <div class="con-item">
+        <div class="con-q">錢什麼時候發？</div>
+        <div class="con-a">每月 25 日結算，帶看費與預看補貼次月 5 日入帳，成交獎金分兩期（次月 50%、第三月 50%）。</div>
+      </div>
+      <div class="con-item">
+        <div class="con-q">可以同時在其他地方做兼職嗎？</div>
+        <div class="con-a">可以。承攬合約無排他條款，但不得私下帶同一客戶成交或向客戶收費，這點需遵守。</div>
+      </div>
+      <div class="con-item">
+        <div class="con-q">帶看完沒成交也有錢嗎？</div>
+        <div class="con-a">有。帶看費和成交獎金是分開計算的，帶看完成回報就領帶看費，不管客戶最後有沒有租。</div>
+      </div>
+      <div class="con-item">
+        <div class="con-q">我可以推薦朋友一起加入嗎？</div>
+        <div class="con-a">可以，而且有獎金！你推薦的人完成首次帶看你就拿 500 元，他首次成交你再拿 1,000 元。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S8 加入 -->
+<div class="slide bg-teal" data-i="7">
+  <div class="w" style="display:flex;flex-direction:column;align-items:center;">
+    <div class="tag">立即加入</div>
+    <div class="h1" style="font-size:46px;text-align:center;">準備好了嗎？<br><span class="accent">3 步開始賺錢</span></div>
+    <div class="join-steps">
+      <div class="js">
+        <div class="js-num">1</div>
+        <div>
+          <div class="js-title">私訊居所 IG</div>
+          <div class="js-desc">@ju_suo666，告訴我們「我想當小幫手」</div>
+        </div>
+      </div>
+      <div class="js">
+        <div class="js-num">2</div>
+        <div>
+          <div class="js-title">完成承攬合約簽署</div>
+          <div class="js-desc">線上簽名，了解合作規則和分潤制度</div>
+        </div>
+      </div>
+      <div class="js">
+        <div class="js-num">3</div>
+        <div>
+          <div class="js-title">接第一個帶看任務，開始賺錢</div>
+          <div class="js-desc">居所指派任務，你接單出發，完成回報，下個月就有收入</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:28px;font-size:13px;color:rgba(255,255,255,0.35);">人生非常有限公司｜統編 60793590</div>
+  </div>
+</div>
+
+</div>
+<div class="nav">
+  <button class="nav-btn" onclick="go(-1)">←</button>
+  <div id="dots"></div>
+  <span class="pg" id="pg">1/8</span>
+  <button class="nav-btn" onclick="go(1)">→</button>
+</div>
+<script>
+let cur=0; const slides=document.querySelectorAll('.slide'); const n=slides.length;
+function buildDots(){const d=document.getElementById('dots');d.innerHTML='';for(let i=0;i<n;i++){const dot=document.createElement('div');dot.className='dot'+(i===cur?' on':'');dot.onclick=()=>goTo(i);d.appendChild(dot);}document.getElementById('pg').textContent=(cur+1)+'/'+n;}
+function goTo(i){slides[cur].classList.remove('active');slides[cur].classList.add('out');const p=cur;cur=Math.max(0,Math.min(i,n-1));setTimeout(()=>slides[p].classList.remove('out'),400);slides[cur].classList.add('active');buildDots();}
+function go(d){goTo(cur+d);}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown')go(1);if(e.key==='ArrowLeft'||e.key==='ArrowUp')go(-1);});
+buildDots();
+
+function calcH(){
+  const v=+document.getElementById('c_v').value||0;
+  const d=+document.getElementById('c_d').value||0;
+  const s=+document.getElementById('c_s').value||0;
+  const r=+document.getElementById('c_r').value||0;
+  let vf=0; if(v>=1)vf+=Math.min(v,2)*200; if(v>2)vf+=Math.min(v-2,6)*45; if(v>8)vf+=(v-8)*65;
+  const df=d*1100; const sf=s*500; const rf=r*500; const total=vf+df+sf+rf;
+  document.getElementById('h_out').innerHTML=`
+    <div class="co-row"><span style="color:rgba(255,255,255,0.6)">帶看費（${v}組）</span><span class="co-val">NT$ ${vf.toLocaleString()}</span></div>
+    <div class="co-row"><span style="color:rgba(255,255,255,0.6)">成交獎金（${d}筆）</span><span class="co-val">NT$ ${df.toLocaleString()}</span></div>
+    <div class="co-row"><span style="color:rgba(255,255,255,0.6)">房源開發（${s}件）</span><span class="co-val">NT$ ${sf.toLocaleString()}</span></div>
+    <div class="co-row"><span style="color:rgba(255,255,255,0.6)">推薦獎金（${r}人）</span><span class="co-val">NT$ ${rf.toLocaleString()}</span></div>
+    <div class="co-row"><span>月預估收入</span><span style="color:#40c4aa;font-size:20px;">NT$ ${total.toLocaleString()}</span></div>
+  `;
+}
+calcH();
+</script>
+</body>
+</html>
